@@ -1,0 +1,26 @@
+{
+  "name": "jw-form",
+  "version": "0.0.18",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -w"
+  },
+  "author": "zhailei2011@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-import": "^1.2.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "html-to-react": "^1.2.11",
+    "jw-components": "0.0.7",
+    "jw-components-mobile": "0.0.17",
+    "moment": "^2.18.1",
+    "path": "^0.12.7",
+    "rc-form": "^1.4.3",
+    "react": "^15.6.1"
+  }
+}
