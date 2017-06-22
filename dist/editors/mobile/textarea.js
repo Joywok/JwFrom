@@ -4,25 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _style3 = require('jw-components-mobile/lib/picker/style');
+var _style2 = require('jw-components-mobile/lib/textarea-item/style');
 
-var _picker = require('jw-components-mobile/lib/picker');
+var _textareaItem = require('jw-components-mobile/lib/textarea-item');
 
-var _picker2 = _interopRequireDefault(_picker);
-
-var _style4 = require('jw-components-mobile/lib/list/style');
-
-var _list = require('jw-components-mobile/lib/list');
-
-var _list2 = _interopRequireDefault(_list);
+var _textareaItem2 = _interopRequireDefault(_textareaItem);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _rcForm = require('rc-form');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,16 +24,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Select = function (_Component) {
-  _inherits(Select, _Component);
+var Textarea = function (_Component) {
+  _inherits(Textarea, _Component);
 
-  function Select(props) {
-    _classCallCheck(this, Select);
+  function Textarea() {
+    _classCallCheck(this, Textarea);
 
-    return _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).call(this, props));
+    return _possibleConstructorReturn(this, (Textarea.__proto__ || Object.getPrototypeOf(Textarea)).apply(this, arguments));
   }
 
-  _createClass(Select, [{
+  _createClass(Textarea, [{
     key: 'onChange',
     value: function onChange(value, schema) {
       this.props.onChange(value, schema);
@@ -52,19 +44,9 @@ var Select = function (_Component) {
       var _this2 = this;
 
       var schema = this.props.schema;
-      var self = this;
-
-      var target = _react2.default.createElement(
-        _picker2.default,
-        { data: schema.options, onChange: function onChange(value) {
-            return _this2.onChange(value, schema);
-          }, value: schema.defaultValue, cols: 1 },
-        _react2.default.createElement(
-          _list2.default.Item,
-          { arrow: 'horizontal' },
-          '\u9009\u62E9\u5730\u533A\uFF08\u5355\u5217\uFF09'
-        )
-      );
+      var target = _react2.default.createElement(_textareaItem2.default, { autoHeight: true, defaultValue: schema['defaultValue'], onChange: function onChange(value) {
+          return _this2.onChange(value, schema);
+        } });
 
       if (schema["other"] && schema["other"]['template']) {
         var Template = schema["other"]['template'];
@@ -82,9 +64,20 @@ var Select = function (_Component) {
         target
       );
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      //初始化
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      //变化
+      // console.log(this.refs.template,'123');
+    }
   }]);
 
-  return Select;
+  return Textarea;
 }(_react.Component);
 
-exports.default = Select;
+exports.default = Textarea;

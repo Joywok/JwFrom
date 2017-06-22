@@ -58,8 +58,6 @@ var BasicDemo = function (_React$Component) {
     _classCallCheck(this, BasicDemo);
 
     return _possibleConstructorReturn(this, (BasicDemo.__proto__ || Object.getPrototypeOf(BasicDemo)).call(this, props));
-    // this.state = {};
-    // _.extend(this.state,props.formData);
   }
 
   _createClass(BasicDemo, [{
@@ -88,9 +86,6 @@ var BasicDemo = function (_React$Component) {
           init_schema[i] = selected_schame;
         }
       }
-      // this.setState({
-      //   schema: init_schema,
-      // });
       this.props.formData.changeData(init_schema);
     }
   }, {
@@ -105,24 +100,13 @@ var BasicDemo = function (_React$Component) {
             _.extend(i, reset);
           }
         }
-      }
-      // let dispatch = this.props.formData['dispatch'];
-      // 
-      );this.props.formData.changeData(init_schema
-      // dispatch()
-      // this.setState({
-      //   schema: init_schema,
-      // });
-      );
+      });
+      this.props.formData.changeData(init_schema);
     }
   }, {
     key: 'changeSchemas',
     value: function changeSchemas(data) {
-      this.props.formData.changeData(data
-      // this.setState({
-      //   schema: data,
-      // });
-      );
+      this.props.formData.changeData(data);
     }
   }, {
     key: 'SelectChange',

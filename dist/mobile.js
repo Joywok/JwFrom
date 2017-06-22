@@ -4,6 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _style3 = require('jw-components-mobile/lib/button/style');
+
+var _button = require('jw-components-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _style4 = require('jw-components-mobile/lib/list/style');
+
+var _list = require('jw-components-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -12,19 +24,25 @@ var _react2 = _interopRequireDefault(_react);
 
 var _rcForm = require('rc-form');
 
-var _antdMobile = require('antd-mobile');
-
-var _radio = require('./editors/pc/radio');
+var _radio = require('./editors/mobile/radio');
 
 var _radio2 = _interopRequireDefault(_radio);
 
-var _input = require('./editors/pc/input');
+var _input = require('./editors/mobile/input');
 
 var _input2 = _interopRequireDefault(_input);
 
-var _checkbox = require('./editors/pc/checkbox');
+var _checkbox = require('./editors/mobile/checkbox');
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _select = require('./editors/mobile/select');
+
+var _select2 = _interopRequireDefault(_select);
+
+var _textarea = require('./editors/mobile/textarea');
+
+var _textarea2 = _interopRequireDefault(_textarea);
 
 var _moment = require('moment');
 
@@ -58,10 +76,12 @@ var data = {
   layout: 'horizontal',
   schema: []
 };
-
 // import { Input } from 'antd';
-var FormItem = _antdMobile.Form.Item;
-var Option = Select.Option;
+// const Option = Select.Option;
+
+
+// import {Picker} from 'jw-components-mobile';
+// alert(Picker)
 
 _moment2.default.locale('zh-cn');
 var dateFormat = 'YYYY/MM/DD';
@@ -83,50 +103,29 @@ var BasicDemo = function (_React$Component) {
   }
 
   _createClass(BasicDemo, [{
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      var self = this;
-      e.preventDefault();
-      this.props.form.validateFields(function (errors, values) {
-        if (!!errors) {
-          console.log('Errors in form!!!');
-          return;
-        }
-        console.log(values, '生成后的代码');
-      });
-    }
-  }, {
     key: 'onChange',
     value: function onChange(value, schema) {
       var selected_schame = _.extend(schema, { defaultValue: value });
-      var init_schema = this.state.schema;
+      var init_schema = this.state.formData.schema;
       for (var i in init_schema) {
-        if (init_schema == schema) {
+        if (init_schema[i] == schema) {
           init_schema[i] = selected_schame;
         }
       }
+      var init_formData = this.state.formData;
+      init_formData.schema = init_schema;
       this.setState({
-        schema: init_schema
+        formData: init_formData
       });
+      var values = this.props.form.getFieldsValue();
+
+      this.props.onChange(values, this.state.formData);
     }
   }, {
-    key: 'SelectChange',
-    value: function SelectChange(value, schema) {
-      this.onChange(value, schema);
-    }
-  }, {
-    key: 'dateChange',
-    value: function dateChange(date, datestring, schema) {
-      if (date) {
-        console.log(Date.parse(new Date(date._d)), datestring);
-        var timeStr = Date.parse(new Date(date._d));
-        this.onChange(timeStr, schema);
-      }
-    }
-  }, {
-    key: 'timeChange',
-    value: function timeChange(v, time, schema) {
-      console.log(v, time, schema);
+    key: 'submit',
+    value: function submit() {
+      var values = this.props.form.getFieldsValue();
+      this.props.submit(values, this.state.formData);
     }
   }, {
     key: 'getLabel',
@@ -153,8 +152,6 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'getFields',
     value: function getFields(schema, index) {
-      var _this2 = this;
-
       var getFieldDecorator = this.props.form.getFieldDecorator;
 
       if (!schema['label']) {
@@ -189,28 +186,22 @@ var BasicDemo = function (_React$Component) {
       }
       if (schema.element == 'Select') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
-          initialValue: schema['defaultValue'],
-          trigger: 'onChange', validateTrigger: 'onChange'
-        })(_react2.default.createElement(
-          Select,
-          { onChange: function onChange(v) {
-              return _this2.SelectChange(v, schema);
-            }, placeholder: '\u8BF7\u9009\u62E9', className: 'jw-web-select' },
-          _.map(schema.options, function (item) {
-            return _react2.default.createElement(
-              Option,
-              { value: item.label },
-              item.label
-            );
-          })
-        ));
+          rules: [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_select2.default, data));
       }
+      if (schema.element == 'Textarea') {
+        component = getFieldDecorator(schema["name"], {
+          rules: [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_textarea2.default, data));
+      }
+
       if (component == '') {
         return '';
       }
       return _react2.default.createElement(
-        FormItem,
+        'div',
         { className: schema['className'] || '', style: schema['style'] || {}, label: this.getLabel(index, schema.label), labelCol: schema["labelCol"] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
         component
       );
@@ -218,6 +209,8 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var self = this;
       var items = [];
       _.each(self.state.formData["schema"], function (item, index) {
@@ -229,22 +222,23 @@ var BasicDemo = function (_React$Component) {
         'div',
         { className: 'form-detail' },
         _react2.default.createElement(
-          _antdMobile.Form,
-          { onSubmit: this.handleSubmit.bind(this) },
-          items,
+          'div',
+          { onValuesChange: function onValuesChange() {
+              return _this2.onValuesChange();
+            } },
           _react2.default.createElement(
-            FormItem,
-            { className: 'form-btns' },
-            _react2.default.createElement(
-              _antdMobile.Button,
-              { type: 'button', className: 'form-cancel' },
-              '\u53D6\u6D88'
-            ),
-            _react2.default.createElement(
-              _antdMobile.Button,
-              { type: 'primary', htmlType: 'submit' },
-              '\xA0\u63D0\u4EA4'
-            )
+            _list2.default,
+            { renderHeader: function renderHeader() {
+                return '基本样式';
+              }, className: 'jw-list' },
+            items
+          ),
+          _react2.default.createElement(
+            _button2.default,
+            { onClick: function onClick() {
+                return _this2.submit();
+              } },
+            '\u63D0\u4EA4'
           )
         )
       );
@@ -254,5 +248,5 @@ var BasicDemo = function (_React$Component) {
   return BasicDemo;
 }(_react2.default.Component);
 
-var WrappedRegistrationForm = _antdMobile.Form.create()(BasicDemo);
+var WrappedRegistrationForm = (0, _rcForm.createForm)()(BasicDemo);
 exports.default = WrappedRegistrationForm;

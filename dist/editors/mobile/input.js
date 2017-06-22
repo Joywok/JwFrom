@@ -4,11 +4,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _style2 = require('jw-components-mobile/lib/input-item/style');
+
+var _inputItem = require('jw-components-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _input = require('jw-components-mobile/lib/input');
-
-var _input2 = _interopRequireDefault(_input);
 
 var _react = require('react');
 
@@ -33,8 +35,7 @@ var InputCustom = function (_Component) {
 
 	_createClass(InputCustom, [{
 		key: 'onChange',
-		value: function onChange(e, schema) {
-			var value = e.target.value;
+		value: function onChange(value, schema) {
 			this.props.onChange(value, schema);
 		}
 	}, {
@@ -43,9 +44,10 @@ var InputCustom = function (_Component) {
 			var _this2 = this;
 
 			var schema = this.props.schema;
-			var target = _react2.default.createElement(_input2.default, { autocomplete: 'off', className: 'jw-web-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(e) {
-					return _this2.onChange(e, schema);
+			var target = _react2.default.createElement(_inputItem2.default, { autocomplete: 'off', className: 'jw-web-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(value) {
+					return _this2.onChange(value, schema);
 				}, defaultValue: schema['defaultValue'] });
+
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(Template, { children: target, target: this });

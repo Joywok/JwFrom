@@ -4,17 +4,17 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _style2 = require('jw-components-mobile/lib/checkbox/style');
 
 var _checkbox = require('jw-components-mobile/lib/checkbox');
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,8 +24,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormItem = _antd.Form.Item;
-var CheckboxGroup = _checkbox2.default.Group;
+var CheckboxItem = _checkbox2.default.CheckboxItem;
 
 var Checkboxs = function (_Component) {
 	_inherits(Checkboxs, _Component);
@@ -38,17 +37,50 @@ var Checkboxs = function (_Component) {
 
 	_createClass(Checkboxs, [{
 		key: 'onChange',
-		value: function onChange(value, schema) {
-			this.props.onChange(value, schema);
+		value: function onChange(v, schema) {
+			console.log(v, schema, "Checkboxsvalue");
+			var newArr = _.filter(schema.defaultValue, function (item) {
+				return item.value == v.value;
+			});
+			var arr = schema.defaultValue;
+			if (newArr.length > 0) {
+				arr = _.filter(schema.defaultValue, function (item) {
+					return item.value != v.value;
+				});
+			} else {
+				arr.push(v);
+			}
+			this.props.onChange(arr, schema);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			var schema = this.props.schema;
 			var self = this;
-			var target = _react2.default.createElement(CheckboxGroup, { options: schema.options, onChange: function onChange(v) {
-					return self.onChange(v, schema);
-				}, value: schema["defaultValue"] });
+			var target = _react2.default.createElement(
+				'div',
+				null,
+				_.map(schema.options, function (item) {
+					var is_has = false;
+					_.map(schema.defaultValue, function (i) {
+						if (i.value == item.value) {
+							is_has = true;
+						}
+					});
+					return _react2.default.createElement(
+						CheckboxItem,
+						{ checked: is_has, onChange: function onChange() {
+								return self.onChange(item, schema);
+							} },
+						' ',
+						_react2.default.createElement(
+							'span',
+							null,
+							item.label
+						)
+					);
+				})
+			);
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(Template, { children: target, target: this });
