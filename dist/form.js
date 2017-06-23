@@ -54,10 +54,10 @@ var timeformat = 'h:mm a';
 var BasicDemo = function (_React$Component) {
   _inherits(BasicDemo, _React$Component);
 
-  function BasicDemo(props) {
+  function BasicDemo() {
     _classCallCheck(this, BasicDemo);
 
-    return _possibleConstructorReturn(this, (BasicDemo.__proto__ || Object.getPrototypeOf(BasicDemo)).call(this, props));
+    return _possibleConstructorReturn(this, (BasicDemo.__proto__ || Object.getPrototypeOf(BasicDemo)).apply(this, arguments));
   }
 
   _createClass(BasicDemo, [{
@@ -126,28 +126,6 @@ var BasicDemo = function (_React$Component) {
     key: 'timeChange',
     value: function timeChange(v, time, schema) {
       console.log(v, time, schema);
-    }
-  }, {
-    key: 'getLabel',
-    value: function getLabel(index, txt) {
-      if (txt) {
-        return _react2.default.createElement('div', { className: 'label', dangerouslySetInnerHTML: { __html: txt } });
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'label' },
-          _react2.default.createElement(
-            'span',
-            { className: 'sequence_number' },
-            index + 1
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'txt' },
-            txt
-          )
-        );
-      }
     }
   }, {
     key: 'getFields',

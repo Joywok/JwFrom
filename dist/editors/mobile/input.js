@@ -39,6 +39,15 @@ var InputCustom = function (_Component) {
 			this.props.onChange(value, schema);
 		}
 	}, {
+		key: 'getLabel',
+		value: function getLabel(txt) {
+			if (txt) {
+				return _react2.default.createElement('div', { className: 'label ant-form-item-label', dangerouslySetInnerHTML: { __html: txt } });
+			} else {
+				return '';
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
@@ -47,10 +56,13 @@ var InputCustom = function (_Component) {
 			var target = _react2.default.createElement(_inputItem2.default, { autocomplete: 'off', className: 'jw-web-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
 				}, defaultValue: schema['defaultValue'] });
-
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
-				target = _react2.default.createElement(Template, { children: target, target: this });
+				target = _react2.default.createElement(
+					'div',
+					{ className: 'Form-item-c' },
+					_react2.default.createElement(Template, { children: target, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
+				);
 			} else {
 				target = _react2.default.createElement(
 					'div',
@@ -60,7 +72,8 @@ var InputCustom = function (_Component) {
 			}
 			return _react2.default.createElement(
 				'div',
-				{ className: 'Form-item-w' },
+				{ className: 'Form-item-w', ref: 'container' },
+				this.getLabel(schema.label),
 				target
 			);
 		}

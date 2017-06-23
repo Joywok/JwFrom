@@ -53,6 +53,27 @@ var Checkboxs = function (_Component) {
 			this.props.onChange(arr, schema);
 		}
 	}, {
+		key: 'getLabel',
+		value: function getLabel(txt) {
+			if (txt) {
+				return _react2.default.createElement('div', { className: 'label ant-form-item-label', dangerouslySetInnerHTML: { __html: txt } });
+			} else {
+				return '';
+			}
+		}
+	}, {
+		key: '_init_layout',
+		value: function _init_layout() {
+			var schema = this.props.schema;
+			if (schema['layout'] == 'horizontal') {
+				return 'layout-horizontal';
+			} else if (schema['layout'] == 'vertical') {
+				return 'layout-vertical';
+			} else {
+				return 'layout-column layout-column-' + schema['column'];
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var schema = this.props.schema;
@@ -83,7 +104,11 @@ var Checkboxs = function (_Component) {
 			);
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
-				target = _react2.default.createElement(Template, { children: target, target: this });
+				target = _react2.default.createElement(
+					'div',
+					{ className: 'Form-item-c' },
+					_react2.default.createElement(Template, { children: target, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
+				);
 			} else {
 				target = _react2.default.createElement(
 					'div',
@@ -93,7 +118,8 @@ var Checkboxs = function (_Component) {
 			}
 			return _react2.default.createElement(
 				'div',
-				{ className: 'Form-item-w' },
+				{ className: "Form-item-w " + this._init_layout(), ref: 'container' },
+				this.getLabel(schema.label),
 				target
 			);
 		}
