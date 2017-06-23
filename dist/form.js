@@ -73,7 +73,6 @@ var BasicDemo = function (_React$Component) {
         if (typeof self.props.submit == 'function') {
           self.props.submit(values);
         }
-        console.log(values, '生成后的代码');
       });
     }
   }, {

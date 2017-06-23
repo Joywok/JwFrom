@@ -62,28 +62,31 @@ var BasicDemo = function (_React$Component) {
   }
 
   _createClass(BasicDemo, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      var self = this;
+      e.preventDefault();
+      this.props.form.validateFields(function (errors, values) {
+        if (!!errors) {
+          console.log('Errors in form!!!');
+          return;
+        }
+        if (typeof self.props.submit == 'function') {
+          self.props.submit(values);
+        }
+      });
+    }
+  }, {
     key: 'onChange',
     value: function onChange(value, schema) {
       var selected_schame = _.extend(schema, { defaultValue: value });
-      var init_schema = this.state.formData.schema;
+      var init_schema = this.props.formData.schema;
       for (var i in init_schema) {
-        if (init_schema[i] == schema) {
+        if (init_schema == schema) {
           init_schema[i] = selected_schame;
         }
       }
-      var init_formData = this.state.formData;
-      init_formData.schema = init_schema;
-      this.setState({
-        formData: init_formData
-      });
-      var values = this.props.form.getFieldsValue();
-      this.props.onChange(values, this.state.formData);
-    }
-  }, {
-    key: 'submit',
-    value: function submit() {
-      var values = this.props.form.getFieldsValue();
-      this.props.submit(values, this.state.formData);
+      this.props.formData.changeData(init_schema);
     }
   }, {
     key: 'getLabel',
@@ -116,8 +119,11 @@ var BasicDemo = function (_React$Component) {
         schema['label'] = '';
       }
       var data = {
+        schemas: this.props.formData.schema,
         schema: schema,
         onChange: this.onChange.bind(this),
+        changeData: this.changeData.bind(this),
+        changeSchemas: this.changeSchemas.bind(this),
         index: index
       };
       var component = '';
@@ -167,8 +173,6 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: '_init_button',
     value: function _init_button() {
-      var _this2 = this;
-
       var data = this.props.formData;
       if (data['buttons']) {
         return _react2.default.createElement(
@@ -181,9 +185,7 @@ var BasicDemo = function (_React$Component) {
           ),
           _react2.default.createElement(
             _button2.default,
-            { type: 'button', onClick: function onClick() {
-                return _this2.submit();
-              } },
+            { type: 'button', onClick: this.handleSubmit.bind(this) },
             '\u63D0\u4EA4'
           )
         );
@@ -192,22 +194,20 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var self = this;
       var items = [];
-      _.each(self.state.formData["schema"], function (item, index) {
+      _.each(self.props.formData.schema, function (item, index) {
         items.push(self.getFields(item, index));
       });
-      var getFieldDecorator = this.props.form.getFieldDecorator;
-
       return _react2.default.createElement(
         'div',
         { className: 'form-detail' },
         _react2.default.createElement(
           'div',
           { onValuesChange: function onValuesChange() {
-              return _this3.onValuesChange();
+              return _this2.onValuesChange();
             } },
           _react2.default.createElement(
             _list2.default,
