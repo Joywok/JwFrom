@@ -74,11 +74,11 @@ var Radios = function (_Component) {
 			var self = this;
 			var target = _react2.default.createElement(
 				'div',
-				null,
+				{ className: 'radio-list' },
 				_.map(schema.options, function (item) {
 					return _react2.default.createElement(
 						RadioItem,
-						{ checked: schema.defaultValue == item.value, onChange: function onChange() {
+						{ key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, onChange: function onChange() {
 								return self.onChange(item.value, schema);
 							} },
 						item.label

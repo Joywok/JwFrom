@@ -53,7 +53,7 @@ var Textarea = function (_Component) {
       var _this2 = this;
 
       var schema = this.props.schema;
-      var target = _react2.default.createElement(_textareaItem2.default, { autoHeight: true, defaultValue: schema['defaultValue'], onChange: function onChange(value) {
+      var target = _react2.default.createElement(_textareaItem2.default, { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
           return _this2.onChange(value, schema);
         } });
 
@@ -80,15 +80,10 @@ var Textarea = function (_Component) {
     }
   }, {
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      //初始化
-    }
+    value: function componentDidMount() {}
   }, {
     key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      //变化
-      // console.log(this.refs.template,'123');
-    }
+    value: function componentDidUpdate() {}
   }]);
 
   return Textarea;

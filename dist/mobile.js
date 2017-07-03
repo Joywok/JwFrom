@@ -24,6 +24,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _rcForm = require('rc-form');
 
+var _form = require('antd/lib/form');
+
+var _form2 = _interopRequireDefault(_form);
+
 var _radio = require('./editors/mobile/radio');
 
 var _radio2 = _interopRequireDefault(_radio);
@@ -52,6 +56,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormItem = _form2.default.Item;
+
 var BasicDemo = function (_React$Component) {
   _inherits(BasicDemo, _React$Component);
 
@@ -79,7 +85,7 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'onChange',
     value: function onChange(value, schema) {
-      var selected_schame = _.extend(schema, { defaultValue: value });
+      var selected_schame = Object.assign(schema, { defaultValue: value });
       var init_schema = this.props.formData.schema;
       for (var i in init_schema) {
         if (init_schema == schema) {
@@ -89,26 +95,24 @@ var BasicDemo = function (_React$Component) {
       this.props.formData.changeData(init_schema);
     }
   }, {
-    key: 'getLabel',
-    value: function getLabel(index, txt) {
-      if (txt) {
-        return _react2.default.createElement('div', { className: 'label', dangerouslySetInnerHTML: { __html: txt } });
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'label' },
-          _react2.default.createElement(
-            'span',
-            { className: 'sequence_number' },
-            index + 1
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'txt' },
-            txt
-          )
-        );
-      }
+    key: 'changeData',
+    value: function changeData(name, data, reset) {
+      var init_schema = this.props.formData.schema;
+      _.each(init_schema, function (i) {
+        if (i['name'] == name) {
+          Object.assign(i, data);
+        } else {
+          if (reset) {
+            Object.assign(i, reset);
+          }
+        }
+      });
+      this.props.formData.changeData(init_schema);
+    }
+  }, {
+    key: 'changeSchemas',
+    value: function changeSchemas(data) {
+      this.props.formData.changeData(data);
     }
   }, {
     key: 'getFields',
@@ -165,8 +169,8 @@ var BasicDemo = function (_React$Component) {
         return '';
       }
       return _react2.default.createElement(
-        'div',
-        { className: schema['className'] || '', style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
+        FormItem,
+        { key: schema['name'], className: schema['className'] || '', style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
         component
       );
     }
@@ -194,8 +198,6 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var self = this;
       var items = [];
       _.each(self.props.formData.schema, function (item, index) {
@@ -205,15 +207,11 @@ var BasicDemo = function (_React$Component) {
         'div',
         { className: 'form-detail' },
         _react2.default.createElement(
-          'div',
-          { onValuesChange: function onValuesChange() {
-              return _this2.onValuesChange();
-            } },
+          _form2.default,
+          { ref: 'form' },
           _react2.default.createElement(
             _list2.default,
-            { renderHeader: function renderHeader() {
-                return '基本样式';
-              }, className: 'jw-list' },
+            { className: 'jw-list' },
             items
           ),
           this._init_button()

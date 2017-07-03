@@ -53,7 +53,7 @@ var InputCustom = function (_Component) {
 			var _this2 = this;
 
 			var schema = this.props.schema;
-			var target = _react2.default.createElement(_inputItem2.default, { autocomplete: 'off', className: 'jw-web-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(value) {
+			var target = _react2.default.createElement(_inputItem2.default, { autoComplete: false, className: 'jw-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
 				}, defaultValue: schema['defaultValue'] });
 			if (schema["other"] && schema["other"]['template']) {

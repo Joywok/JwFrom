@@ -78,7 +78,7 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'onChange',
     value: function onChange(value, schema) {
-      var selected_schame = _.extend(schema, { defaultValue: value });
+      var selected_schame = Object.assign(schema, { defaultValue: value });
       var init_schema = this.props.formData.schema;
       for (var i in init_schema) {
         if (init_schema == schema) {
@@ -93,10 +93,10 @@ var BasicDemo = function (_React$Component) {
       var init_schema = this.props.formData.schema;
       _.each(init_schema, function (i) {
         if (i['name'] == name) {
-          _.extend(i, data);
+          Object.assign(i, data);
         } else {
           if (reset) {
-            _.extend(i, reset);
+            Object.assign(i, reset);
           }
         }
       });
@@ -105,7 +105,13 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'changeSchemas',
     value: function changeSchemas(data) {
-      this.props.formData.changeData(data);
+      var self = this;
+      this.props.formData.changeData(data
+      // this.forceUpdate();
+      // setTimeout(function(){
+      // self.forceUpdate();
+      // },0)
+      );
     }
   }, {
     key: 'SelectChange',
@@ -137,6 +143,7 @@ var BasicDemo = function (_React$Component) {
         schema['label'] = '';
       }
       var data = {
+        formData: this.props.formData,
         schemas: this.props.formData.schema,
         schema: schema,
         onChange: this.onChange.bind(this),

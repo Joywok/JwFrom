@@ -37,20 +37,19 @@ var Checkboxs = function (_Component) {
 
 	_createClass(Checkboxs, [{
 		key: 'onChange',
-		value: function onChange(v, schema) {
-			console.log(v, schema, "Checkboxsvalue");
-			var newArr = _.filter(schema.defaultValue, function (item) {
-				return item.value == v.value;
-			});
-			var arr = schema.defaultValue;
-			if (newArr.length > 0) {
-				arr = _.filter(schema.defaultValue, function (item) {
-					return item.value != v.value;
+		value: function onChange(e, v, schema) {
+			var defaultValue = this.props.schema.defaultValue;
+			var hasValue = _.filter(defaultValue, function (item) {
+				return item == v.value;
+			}); //判断当前默认里面有没有
+			if (hasValue.length > 0) {
+				defaultValue = _.filter(defaultValue, function (item) {
+					return item != v.value;
 				});
 			} else {
-				arr.push(v);
+				defaultValue.push(v['value']);
 			}
-			this.props.onChange(arr, schema);
+			this.props.onChange(defaultValue, schema);
 		}
 	}, {
 		key: 'getLabel',
@@ -81,17 +80,17 @@ var Checkboxs = function (_Component) {
 			var target = _react2.default.createElement(
 				'div',
 				null,
-				_.map(schema.options, function (item) {
+				_.map(schema.options, function (item, index) {
 					var is_has = false;
 					_.map(schema.defaultValue, function (i) {
-						if (i.value == item.value) {
+						if (i == item.value) {
 							is_has = true;
 						}
 					});
 					return _react2.default.createElement(
 						CheckboxItem,
-						{ checked: is_has, onChange: function onChange() {
-								return self.onChange(item, schema);
+						{ key: item.value, checked: is_has, onChange: function onChange(e) {
+								return self.onChange(e, item, schema);
 							} },
 						' ',
 						_react2.default.createElement(
