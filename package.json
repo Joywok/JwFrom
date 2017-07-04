@@ -1,6 +1,6 @@
 {
   "name": "jw-form",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,8 @@
     "babel-plugin-import": "^1.2.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-size": "^2.1.0",
     "html-to-react": "^1.2.11",
     "jw-components": "0.0.11",
     "jw-components-mobile": "0.0.21",

@@ -123,6 +123,7 @@ var BasicDemo = function (_React$Component) {
         schema['label'] = '';
       }
       var data = {
+        formData: this.props.formData,
         schemas: this.props.formData.schema,
         schema: schema,
         onChange: this.onChange.bind(this),
@@ -170,7 +171,7 @@ var BasicDemo = function (_React$Component) {
       }
       return _react2.default.createElement(
         FormItem,
-        { key: schema['name'], className: schema['className'] || '', style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
+        { key: schema['name'], className: 'form-item-' + schema['element'] + ' ' + (schema['className'] || ''), style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
         component
       );
     }

@@ -106,12 +106,11 @@ var BasicDemo = function (_React$Component) {
     key: 'changeSchemas',
     value: function changeSchemas(data) {
       var self = this;
-      this.props.formData.changeData(data
+      this.props.formData.changeData(data);
       // this.forceUpdate();
       // setTimeout(function(){
       // self.forceUpdate();
       // },0)
-      );
     }
   }, {
     key: 'SelectChange',
@@ -237,7 +236,7 @@ var BasicDemo = function (_React$Component) {
       }
       return _react2.default.createElement(
         FormItem,
-        { className: schema['className'] || '', style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
+        { className: 'form-item-' + schema['element'] + ' ' + (schema['className'] || ''), style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
         component
       );
     }

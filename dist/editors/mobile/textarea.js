@@ -53,10 +53,9 @@ var Textarea = function (_Component) {
       var _this2 = this;
 
       var schema = this.props.schema;
-      var target = _react2.default.createElement(_textareaItem2.default, { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
+      var target = _react2.default.createElement(_textareaItem2.default, { rows: schema['rows'] || 1, count: schema['count'] || '', autoHeight: schema['autoHeight'] || '', defaultValue: schema['defaultValue'], onChange: function onChange(value) {
           return _this2.onChange(value, schema);
         } });
-
       if (schema["other"] && schema["other"]['template']) {
         var Template = schema["other"]['template'];
         target = _react2.default.createElement(
