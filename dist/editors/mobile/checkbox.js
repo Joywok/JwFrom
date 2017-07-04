@@ -89,7 +89,7 @@ var Checkboxs = function (_Component) {
 					});
 					return _react2.default.createElement(
 						CheckboxItem,
-						{ key: item.value, checked: is_has, onChange: function onChange(e) {
+						{ key: item.value, disabled: item["disabled"] || false, checked: is_has, onChange: function onChange(e) {
 								return self.onChange(e, item, schema);
 							} },
 						' ',

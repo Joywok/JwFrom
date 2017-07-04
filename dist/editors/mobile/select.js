@@ -16,6 +16,8 @@ var _list = require('jw-components-mobile/lib/list');
 
 var _list2 = _interopRequireDefault(_list);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -65,9 +67,9 @@ var Select = function (_Component) {
 
       var target = _react2.default.createElement(
         _picker2.default,
-        { data: schema.options, onChange: function onChange(value) {
+        _extends({}, schema, { data: schema.options, onChange: function onChange(value) {
             return _this2.onChange(value, schema);
-          }, value: schema.defaultValue, cols: 1 },
+          }, value: schema.defaultValue }),
         _react2.default.createElement(
           _list2.default.Item,
           { arrow: 'horizontal' },

@@ -10,6 +10,8 @@ var _inputItem = require('jw-components-mobile/lib/input-item');
 
 var _inputItem2 = _interopRequireDefault(_inputItem);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -53,9 +55,9 @@ var InputCustom = function (_Component) {
 			var _this2 = this;
 
 			var schema = this.props.schema;
-			var target = _react2.default.createElement(_inputItem2.default, { autoComplete: false, className: 'jw-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(value) {
+			var target = _react2.default.createElement(_inputItem2.default, _extends({}, schema, { onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
-				}, defaultValue: schema['defaultValue'] });
+				} }));
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(
