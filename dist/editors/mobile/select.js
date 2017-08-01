@@ -37,16 +37,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Select = function (_Component) {
   _inherits(Select, _Component);
 
-  function Select(props) {
+  function Select() {
     _classCallCheck(this, Select);
 
-    return _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).call(this, props));
+    return _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).apply(this, arguments));
   }
 
   _createClass(Select, [{
     key: 'onChange',
     value: function onChange(value, schema) {
       this.props.onChange(value, schema);
+      var propsSchema = this.props.schema;
+      if (propsSchema['events'] && propsSchema['events']['onChange']) {
+        propsSchema['events']['onChange'].call(this, arguments);
+      }
     }
   }, {
     key: 'getLabel',
@@ -64,10 +68,9 @@ var Select = function (_Component) {
 
       var schema = this.props.schema;
       var self = this;
-
       var target = _react2.default.createElement(
         _picker2.default,
-        _extends({}, schema, { data: schema.options, onChange: function onChange(value) {
+        _extends({}, schema["attr"], schema['events'], { data: schema.options, onChange: function onChange(value) {
             return _this2.onChange(value, schema);
           }, value: schema.defaultValue }),
         _react2.default.createElement(

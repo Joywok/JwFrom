@@ -48,6 +48,18 @@ var _textarea = require('./editors/mobile/textarea');
 
 var _textarea2 = _interopRequireDefault(_textarea);
 
+var _datepicker = require('./editors/mobile/datepicker');
+
+var _datepicker2 = _interopRequireDefault(_datepicker);
+
+var _switch = require('./editors/mobile/switch');
+
+var _switch2 = _interopRequireDefault(_switch);
+
+var _custom = require('./editors/mobile/custom');
+
+var _custom2 = _interopRequireDefault(_custom);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55,6 +67,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import Form from 'antd/lib/form';
+
+require('./styles/mobile/form.css');
+require('./styles/loading.css');
+require('antd/lib/form/style/index.css');
 
 var FormItem = _form2.default.Item;
 
@@ -74,7 +91,7 @@ var BasicDemo = function (_React$Component) {
       e.preventDefault();
       this.props.form.validateFields(function (errors, values) {
         if (!!errors) {
-          console.log('Errors in form!!!');
+          console.log('Errors in form!!!', errors);
           return;
         }
         if (typeof self.props.submit == 'function') {
@@ -155,20 +172,37 @@ var BasicDemo = function (_React$Component) {
       }
       if (schema.element == 'Select') {
         component = getFieldDecorator(schema["name"], {
-          rules: [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_select2.default, data));
       }
       if (schema.element == 'Textarea') {
         component = getFieldDecorator(schema["name"], {
-          rules: [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_textarea2.default, data));
+      }
+      if (schema.element == 'DatePicker') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_datepicker2.default, data));
+      }
+      if (schema.element == 'Switch') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_switch2.default, data));
+      }
+
+      if (schema.element == 'Custom') {
+        component = _react2.default.createElement(_custom2.default, data);
       }
 
       if (component == '') {
         return '';
       }
+
       return _react2.default.createElement(
         FormItem,
         { key: schema['name'], className: 'form-item-' + schema['element'] + ' ' + (schema['className'] || ''), style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', colon: schema['colon'], hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
@@ -197,13 +231,34 @@ var BasicDemo = function (_React$Component) {
       }
     }
   }, {
+    key: '_init_list',
+    value: function _init_list(data) {
+      var self = this;
+      if (data.length == 0) {
+        return false;
+      }
+      return _.map(data, function (item, index) {
+        if (item.length) {
+          var nowData = self._init_list(item);
+          return _react2.default.createElement(
+            'div',
+            { className: 'form-block' },
+            _react2.default.createElement(
+              'div',
+              { className: 'form-block-w' },
+              nowData
+            )
+          );
+        } else {
+          return self.getFields(item, index);
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var self = this;
-      var items = [];
-      _.each(self.props.formData.schema, function (item, index) {
-        items.push(self.getFields(item, index));
-      });
+      var items = this._init_list(self.props.formData.schema);
       return _react2.default.createElement(
         'div',
         { className: 'form-detail' },

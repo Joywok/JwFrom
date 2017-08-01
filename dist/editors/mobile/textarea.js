@@ -10,6 +10,8 @@ var _textareaItem = require('jw-components-mobile/lib/textarea-item');
 
 var _textareaItem2 = _interopRequireDefault(_textareaItem);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -37,6 +39,10 @@ var Textarea = function (_Component) {
     key: 'onChange',
     value: function onChange(value, schema) {
       this.props.onChange(value, schema);
+      var propsSchema = this.props.schema;
+      if (propsSchema['events'] && propsSchema['events']['onChange']) {
+        propsSchema['events']['onChange'].call(this, arguments);
+      }
     }
   }, {
     key: 'getLabel',
@@ -53,9 +59,9 @@ var Textarea = function (_Component) {
       var _this2 = this;
 
       var schema = this.props.schema;
-      var target = _react2.default.createElement(_textareaItem2.default, { rows: schema['rows'] || 1, count: schema['count'] || '', autoHeight: schema['autoHeight'] || '', defaultValue: schema['defaultValue'], onChange: function onChange(value) {
+      var target = _react2.default.createElement(_textareaItem2.default, _extends({}, schema['attr'], schema['events'], { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
           return _this2.onChange(value, schema);
-        } });
+        } }));
       if (schema["other"] && schema["other"]['template']) {
         var Template = schema["other"]['template'];
         target = _react2.default.createElement(

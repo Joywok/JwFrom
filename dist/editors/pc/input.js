@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _input = require('jw-components/lib/input');
@@ -45,6 +47,10 @@ var InputCustom = function (_Component) {
 		value: function onChange(e, schema) {
 			var value = e.target.value;
 			this.props.onChange(value, schema);
+			var propsSchema = this.props.schema;
+			if (propsSchema['events'] && propsSchema['events']['onChange']) {
+				propsSchema['events']['onChange'].call(this, arguments);
+			}
 		}
 	}, {
 		key: 'render',
@@ -53,9 +59,26 @@ var InputCustom = function (_Component) {
 
 			var self = this;
 			var schema = this.props.schema;
-			var target = _react2.default.createElement(_input2.default, { autocomplete: 'off', className: 'jw-web-input', placeholder: schema.placeholder, type: schema.type, onChange: function onChange(e) {
-					return _this2.onChange(e, schema);
-				}, defaultValue: schema['defaultValue'] });
+			var target = void 0;
+			var data = Object.assign({});
+			// ,(schema["attr"]||{}),(schema["events"]||{})
+			if (schema && schema['attr']) {
+				data = Object.assign(data, schema["attr"]);
+			}
+			if (schema && schema['events']) {
+				data = Object.assign(data, schema["events"]);
+			}
+			if (this.props.type && this.props.type == 'Textarea') {
+				var TextArea = _input2.default.TextArea;
+
+				target = _react2.default.createElement(TextArea, _extends({}, data, { onChange: function onChange(e) {
+						return _this2.onChange(e, schema);
+					}, defaultValue: schema['defaultValue'] }));
+			} else {
+				target = _react2.default.createElement(_input2.default, _extends({}, data, { onChange: function onChange(e) {
+						return _this2.onChange(e, schema);
+					}, defaultValue: schema['defaultValue'] }));
+			}
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(

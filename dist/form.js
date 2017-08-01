@@ -28,6 +28,26 @@ var _checkbox = require('./editors/pc/checkbox');
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
+var _matrix = require('./editors/pc/matrix');
+
+var _matrix2 = _interopRequireDefault(_matrix);
+
+var _switch = require('./editors/pc/switch');
+
+var _switch2 = _interopRequireDefault(_switch);
+
+var _select = require('./editors/pc/select');
+
+var _select2 = _interopRequireDefault(_select);
+
+var _datepicker = require('./editors/pc/datepicker');
+
+var _datepicker2 = _interopRequireDefault(_datepicker);
+
+var _custom = require('./editors/mobile/custom');
+
+var _custom2 = _interopRequireDefault(_custom);
+
 var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
@@ -42,9 +62,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+require('./styles/loading.css');
+
 // import { Input } from 'antd';
 var FormItem = _antd.Form.Item;
-var Option = _antd.Select.Option;
+var Option = _select2.default.Option;
 
 _moment2.default.locale('zh-cn');
 var dateFormat = 'YYYY/MM/DD';
@@ -67,7 +89,7 @@ var BasicDemo = function (_React$Component) {
       e.preventDefault();
       this.props.form.validateFields(function (errors, values) {
         if (!!errors) {
-          console.log('Errors in form!!!');
+          console.log('Errors in form!!!', errors);
           return;
         }
         if (typeof self.props.submit == 'function') {
@@ -78,6 +100,7 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'onChange',
     value: function onChange(value, schema) {
+      var self = this;
       var selected_schame = Object.assign(schema, { defaultValue: value });
       var init_schema = this.props.formData.schema;
       for (var i in init_schema) {
@@ -107,10 +130,6 @@ var BasicDemo = function (_React$Component) {
     value: function changeSchemas(data) {
       var self = this;
       this.props.formData.changeData(data);
-      // this.forceUpdate();
-      // setTimeout(function(){
-      // self.forceUpdate();
-      // },0)
     }
   }, {
     key: 'SelectChange',
@@ -121,7 +140,7 @@ var BasicDemo = function (_React$Component) {
     key: 'dateChange',
     value: function dateChange(date, datestring, schema) {
       if (date) {
-        console.log(Date.parse(new Date(date._d)), datestring);
+        // console.log(Date.parse(new Date(date._d)),datestring);
         var timeStr = Date.parse(new Date(date._d));
         this.onChange(timeStr, schema);
       }
@@ -129,13 +148,11 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'timeChange',
     value: function timeChange(v, time, schema) {
-      console.log(v, time, schema);
+      // console.log(v,time,schema);
     }
   }, {
     key: 'getFields',
     value: function getFields(schema, index) {
-      var _this2 = this;
-
       var getFieldDecorator = this.props.form.getFieldDecorator;
 
       if (!schema['label']) {
@@ -158,6 +175,14 @@ var BasicDemo = function (_React$Component) {
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_input2.default, data));
       }
+      if (schema.element == 'Textarea') {
+        data['type'] = "Textarea";
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_input2.default, data));
+      }
       if (schema.element == 'Radio') {
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
@@ -172,71 +197,43 @@ var BasicDemo = function (_React$Component) {
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_checkbox2.default, data));
       }
+      if (schema.element == 'Matrix') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_matrix2.default, data));
+      }
+      if (schema.element == 'Switch') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_switch2.default, data));
+      }
       if (schema.element == 'Select') {
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
-        })(_react2.default.createElement(
-          _antd.Select,
-          { onChange: function onChange(v) {
-              return _this2.SelectChange(v, schema);
-            }, placeholder: '\u8BF7\u9009\u62E9', className: 'jw-web-select' },
-          _.map(schema.options, function (item) {
-            return _react2.default.createElement(
-              Option,
-              { value: item.label },
-              item.label
-            );
-          })
-        ));
+        })(_react2.default.createElement(_select2.default, data));
       }
       if (schema.element == 'Date') {
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
-        })(_react2.default.createElement(_antd.DatePicker, { onChange: function onChange(v, date) {
-            return _this2.dateChange(v, date, schema);
-          }, defaultValue: schema.defaultValue, format: dateFormat }));
+        })(_react2.default.createElement(_datepicker2.default, data));
       }
-      if (schema.element == 'Time') {
-        component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
-          initialValue: schema['defaultValue'],
-          trigger: 'onChange', validateTrigger: 'onChange'
-        })(_react2.default.createElement(
-          'div',
-          { className: 'timePicker' },
-          _react2.default.createElement(_antd.TimePicker, {
-            onChange: function onChange(v, time) {
-              return _this2.timeChange(v, time, schema);
-            },
-            disabledHours: function disabledHours() {
-              return [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-            },
-            hideDisabledOptions: true,
-            format: 'HH'
-          }),
-          _react2.default.createElement(
-            'span',
-            null,
-            ':'
-          ),
-          _react2.default.createElement(_antd.TimePicker, {
-            onChange: function onChange(v, time) {
-              return _this2.timeChange(v, time, schema);
-            },
-            format: 'mm'
-          })
-        ));
+      if (schema.element == 'Custom') {
+        component = _react2.default.createElement(_custom2.default, data);
       }
       if (component == '') {
         return '';
       }
       return _react2.default.createElement(
         FormItem,
-        { className: 'form-item-' + schema['element'] + ' ' + (schema['className'] || ''), style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
+        { key: schema['name'], className: 'form-item-' + schema['element'] + ' ' + (schema['className'] || ''), style: schema['style'] || {}, help: schema["help"] || '', extra: schema['extra'] || '', hasFeedback: schema['hasFeedback'] || false, validateStatus: schema['validateStatus'] },
         component
       );
     }
@@ -256,19 +253,40 @@ var BasicDemo = function (_React$Component) {
           _react2.default.createElement(
             _antd.Button,
             { type: 'primary', htmlType: 'submit', onClick: this.handleSubmit.bind(this) },
-            '\xA0\u63D0\u4EA4'
+            '\u63D0\u4EA4'
           )
         );
       }
     }
   }, {
+    key: '_init_list',
+    value: function _init_list(data) {
+      var self = this;
+      if (data.length == 0) {
+        return false;
+      }
+      return _.map(data, function (item, index) {
+        if (item.length) {
+          var nowData = self._init_list(item);
+          return _react2.default.createElement(
+            'div',
+            { className: 'form-block' },
+            _react2.default.createElement(
+              'div',
+              { className: 'form-block-w' },
+              nowData
+            )
+          );
+        } else {
+          return self.getFields(item, index);
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var self = this;
-      var items = [];
-      _.each(self.props.formData.schema, function (item, index) {
-        items.push(self.getFields(item, index));
-      });
+      var items = this._init_list(self.props.formData.schema);
       return _react2.default.createElement(
         'div',
         { className: 'form-detail' },

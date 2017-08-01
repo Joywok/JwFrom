@@ -39,6 +39,10 @@ var InputCustom = function (_Component) {
 		key: 'onChange',
 		value: function onChange(value, schema) {
 			this.props.onChange(value, schema);
+			var propsSchema = this.props.schema;
+			if (propsSchema['events'] && propsSchema['events']['onChange']) {
+				propsSchema['events']['onChange'].call(this, arguments);
+			}
 		}
 	}, {
 		key: 'getLabel',
@@ -55,7 +59,7 @@ var InputCustom = function (_Component) {
 			var _this2 = this;
 
 			var schema = this.props.schema;
-			var target = _react2.default.createElement(_inputItem2.default, _extends({}, schema, { onChange: function onChange(value) {
+			var target = _react2.default.createElement(_inputItem2.default, _extends({}, schema['attr'], schema['events'], { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
 				} }));
 			if (schema["other"] && schema["other"]['template']) {
