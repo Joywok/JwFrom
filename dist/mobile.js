@@ -56,6 +56,10 @@ var _switch = require('./editors/mobile/switch');
 
 var _switch2 = _interopRequireDefault(_switch);
 
+var _rate = require('./editors/mobile/rate');
+
+var _rate2 = _interopRequireDefault(_rate);
+
 var _custom = require('./editors/mobile/custom');
 
 var _custom2 = _interopRequireDefault(_custom);
@@ -193,6 +197,13 @@ var BasicDemo = function (_React$Component) {
           rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_switch2.default, data));
+      }
+
+      if (schema.element == 'Rate') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_rate2.default, data));
       }
 
       if (schema.element == 'Custom') {

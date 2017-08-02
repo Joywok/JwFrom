@@ -1,6 +1,6 @@
 {
   "name": "jw-form",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "moment": "^2.18.1",
     "path": "^0.12.7",
     "rc-form": "^1.4.3",
-    "react": "^15.6.1"
+    "react": "^15.6.1",
+    "react-rating": "^0.8.1"
   }
 }
