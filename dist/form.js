@@ -44,7 +44,11 @@ var _datepicker = require('./editors/pc/datepicker');
 
 var _datepicker2 = _interopRequireDefault(_datepicker);
 
-var _custom = require('./editors/mobile/custom');
+var _rate = require('./editors/pc/rate');
+
+var _rate2 = _interopRequireDefault(_rate);
+
+var _custom = require('./editors/pc/custom');
 
 var _custom2 = _interopRequireDefault(_custom);
 
@@ -224,6 +228,13 @@ var BasicDemo = function (_React$Component) {
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_datepicker2.default, data));
+      }
+
+      if (schema.element == 'Rate') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_rate2.default, data));
       }
       if (schema.element == 'Custom') {
         component = _react2.default.createElement(_custom2.default, data);

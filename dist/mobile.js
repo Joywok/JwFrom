@@ -261,6 +261,7 @@ var BasicDemo = function (_React$Component) {
             )
           );
         } else {
+          console.log(self.getFields(item, index));
           return self.getFields(item, index);
         }
       });
