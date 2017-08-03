@@ -1,0 +1,14 @@
+.matrix-list {
+  border: 1px solid #ccc;
+}
+.matrix-list .matrix-title {
+  border-bottom: 1px solid #ccc;
+}
+.matrix-list .matrix-title .matrix-title-i {
+  display: inline-flex;
+  flex: 1;
+}
+.matrix-list .matrix-list-c .matrix-row-i .matrix-series-i {
+  display: inline-flex;
+  flex: 1;
+}
