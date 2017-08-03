@@ -273,7 +273,7 @@ var BasicDemo = function (_React$Component) {
       var items = this._init_list(self.props.formData.schema);
       return _react2.default.createElement(
         'div',
-        { className: 'form-detail' },
+        { className: "form-detail " + self.props.formData['className'] },
         _react2.default.createElement(
           _form2.default,
           { ref: 'form' },

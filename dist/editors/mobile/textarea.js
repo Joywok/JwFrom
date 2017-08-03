@@ -29,10 +29,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Textarea = function (_Component) {
   _inherits(Textarea, _Component);
 
-  function Textarea() {
+  function Textarea(props) {
     _classCallCheck(this, Textarea);
 
-    return _possibleConstructorReturn(this, (Textarea.__proto__ || Object.getPrototypeOf(Textarea)).apply(this, arguments));
+    console.log(props, 'zzzzz');
+    return _possibleConstructorReturn(this, (Textarea.__proto__ || Object.getPrototypeOf(Textarea)).call(this, props));
   }
 
   _createClass(Textarea, [{
@@ -59,7 +60,7 @@ var Textarea = function (_Component) {
       var _this2 = this;
 
       var schema = this.props.schema;
-      var target = _react2.default.createElement(_textareaItem2.default, _extends({}, schema['attr'], schema['events'], { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
+      var target = _react2.default.createElement(_textareaItem2.default, _extends({}, schema['attr'], schema['events'], { value: schema['defaultValue'], onChange: function onChange(value) {
           return _this2.onChange(value, schema);
         } }));
       if (schema["other"] && schema["other"]['template']) {

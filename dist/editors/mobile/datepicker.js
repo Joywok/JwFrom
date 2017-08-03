@@ -80,7 +80,7 @@ var DatePickers = function (_Component) {
 				mode: "date",
 				title: "选择日期",
 				disabled: false,
-				value: (0, _moment2.default)(schema['defaultValue'] * 1000) || (0, _moment2.default)(),
+				value: schema['defaultValue'] ? (0, _moment2.default)(schema['defaultValue'] * 1000) : (0, _moment2.default)(),
 				format: function format(val) {
 					return val.format('YYYY-MM-DD HH:mm:ss');
 				}

@@ -73,11 +73,11 @@ var InputCustom = function (_Component) {
 
 				target = _react2.default.createElement(TextArea, _extends({}, data, { onChange: function onChange(e) {
 						return _this2.onChange(e, schema);
-					}, defaultValue: schema['defaultValue'] }));
+					}, value: schema['defaultValue'] }));
 			} else {
 				target = _react2.default.createElement(_input2.default, _extends({}, data, { onChange: function onChange(e) {
 						return _this2.onChange(e, schema);
-					}, defaultValue: schema['defaultValue'] }));
+					}, value: schema['defaultValue'] }));
 			}
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];

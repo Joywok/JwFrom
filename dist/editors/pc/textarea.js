@@ -59,7 +59,7 @@ var TextareaCustom = function (_Component) {
 			var schema = this.props.schema;
 			var target = _react2.default.createElement(TextArea, _extends({ placeholder: schema.placeholder, type: schema.type, onChange: function onChange(e) {
 					return _this2.onChange(e, schema);
-				}, defaultValue: schema['defaultValue'] }, schema['attr']));
+				}, value: schema['defaultValue'] }, schema['attr']));
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(
