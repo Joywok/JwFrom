@@ -20,7 +20,7 @@
     "gulp-size": "^2.1.0",
     "html-to-react": "^1.2.11",
     "jw-components": "0.0.11",
-    "jw-components-mobile": "0.0.21",
+    "jw-components-mobile": "0.0.26",
     "loading-svg": "^1.0.0",
     "moment": "^2.18.1",
     "path": "^0.12.7",
