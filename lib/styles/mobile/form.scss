@@ -1,63 +1,63 @@
 input{
-  border:none!important;
+  border:none;
 }
 .am-list.jw-list .am-list-body .am-list-item.am-input-item .am-input-control{
-  height: auto!important;line-height: normal!important;
+  height: auto;line-height: normal;
    input{
-    font-size: 14px!important;
-    height: 30px!important;
-    line-height: 30px!important;
-    padding: 7px 0 7px!important;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding: 7px 0 7px;
   }
 }
 
 .am-list .am-list-item.am-textarea-item{
-  padding-right: 15px!important;
+  padding-right: 15px;
 }
 .am-list-item.am-textarea-item .am-textarea-control{
-  min-height: 50px!important;
+  min-height: 50px;
   textarea{
-    min-height: 50px!important;line-height: 20px!important;
+    min-height: 50px;line-height: 20px;
   }
 }
 
 .am-list .am-list-item.am-textarea-item.am-textarea-item-single-line{
-  padding-right: 0!important;
+  padding-right: 0;
 }
 .am-list.jw-list .am-list-body .am-list-item.am-input-item .am-input-control:after{
-  display: none!important;
+  display: none;
 }
 .am-list.jw-list .am-list-body .am-radio-item.am-list-item .am-list-line{
-  padding: 0!important;
+  padding: 0;
 }
 .am-list.jw-list .am-list-body .am-radio-item.am-list-item .am-list-line:after{
-  display: none!important;
+  display: none;
 }
 .am-list.jw-list .am-list-body .am-checkbox-item.am-list-item .am-list-line:after{
-  display: none!important;
+  display: none;
 }
 .am-list.jw-list .am-list-body .am-checkbox-item.am-list-item .am-list-line .am-list-content{
-  margin-left: 0!important;
-  font-size: 14px!important;
+  margin-left: 0;
+  font-size: 14px;
 }
 
 .am-list.jw-list .am-list-body .am-radio-item.am-list-item{
-  min-height: 0!important;
+  min-height: 0;
   height: 44px;
   padding-right: 15px;
   padding-left: 15px;
   .am-list-line{
-    min-height: 0!important;
+    min-height: 0;
     .am-list-content{
-      font-size: 14px!important;
+      font-size: 14px;
     }
     .am-list-extra{
       .am-radio{
-        height: 3.47826087rem !important;
-        min-height: 3.47826087rem !important;
+        height: 3.47826087rem ;
+        min-height: 3.47826087rem ;
         .am-radio-inner{
-          top:50%!important;
-          right:0!important;
+          top:50%;
+          right:0;
           margin-top: -10px;
         }
       }
@@ -66,21 +66,21 @@ input{
 }
 
 .am-list.jw-list .am-list-body .am-checkbox-item.am-list-item{
-  min-height: 0!important;
+  min-height: 0;
   .am-list-thumb .am-checkbox-wrapper .am-checkbox{
-    height:44px!important;
+    height:44px;
   }
   .am-checkbox-inner{
-    top:50%!important;
-    right: 15px!important;
-    margin-top: -10px!important;
-    margin-right: 0!important;
+    top:50%;
+    right: 15px;
+    margin-top: -10px;
+    margin-right: 0;
   }
 }
 
 .am-list-body{
-  border:1px solid #ddd!important;
-  padding:0!important;
+  border:1px solid #ddd;
+  padding:0;
 }
 .ant-form-item{
   .ant-form-item-control-wrapper{
@@ -120,7 +120,7 @@ input{
 }
 
 .am-list-item.am-input-item{
-  padding:0!important;
+  padding:0;
 }
 
 .ant-form-item.form-item-Textarea{
@@ -148,7 +148,7 @@ input{
     margin-left: 0;
     margin-right: 0px;
     // .am-radio-item.am-list-item .am-list-line{
-    //   padding-left: 15px!important;
+    //   padding-left: 15px;
     // }
   }
 }
@@ -165,25 +165,25 @@ input{
     margin-left: 0;
     margin-right: 0px;
     .am-checkbox-item.am-list-item .am-list-line{
-      padding-left: 15px!important;
+      padding-left: 15px;
     }
   } 
 }
 
 .ant-form-item.form-item-Select{
   .am-list-item{
-    min-height: 44px!important;
+    min-height: 44px;
   }
   .am-list-item .am-list-line .am-list-content{
-    line-height: 44px!important;
+    line-height: 44px;
   }
   .am-list-item .am-list-line .am-list-extra{
-    line-height: 44px!important;
-    font-size: 14px!important;
+    line-height: 44px;
+    font-size: 14px;
   }
   .am-list-item .am-list-line .am-list-arrow{
-    width: 14px!important;
-    height: 14px!important;
+    width: 14px;
+    height: 14px;
   }
 
   .am-list-content{

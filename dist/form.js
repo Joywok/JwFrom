@@ -317,5 +317,5 @@ var BasicDemo = function (_React$Component) {
   return BasicDemo;
 }(_react2.default.Component);
 
-var WrappedRegistrationForm = (0, _rcForm.createForm)({})(BasicDemo);
+var WrappedRegistrationForm = _antd.Form.create({})(BasicDemo);
 exports.default = WrappedRegistrationForm;
