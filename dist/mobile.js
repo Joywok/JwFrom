@@ -4,19 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _style3 = require('jw-components-mobile/lib/list/style');
-
 var _list = require('jw-components-mobile/lib/list');
 
 var _list2 = _interopRequireDefault(_list);
-
-var _style4 = require('jw-components-mobile/lib/button/style');
 
 var _button = require('jw-components-mobile/lib/button');
 
 var _button2 = _interopRequireDefault(_button);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('jw-components-mobile/lib/list/style');
+
+require('jw-components-mobile/lib/button/style');
 
 var _react = require('react');
 
@@ -60,6 +60,10 @@ var _rate = require('./editors/mobile/rate');
 
 var _rate2 = _interopRequireDefault(_rate);
 
+var _area = require('./editors/mobile/area');
+
+var _area2 = _interopRequireDefault(_area);
+
 var _custom = require('./editors/mobile/custom');
 
 var _custom2 = _interopRequireDefault(_custom);
@@ -71,11 +75,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import Form from 'antd/lib/form';
 
-require('./styles/mobile/form.css');
 require('./styles/loading.css');
-require('antd/lib/form/style/index.css');
+// require('antd/lib/form/style/index.css');
+require('./styles/mobile/form.css');
 
 var FormItem = _form2.default.Item;
 
@@ -113,7 +116,7 @@ var BasicDemo = function (_React$Component) {
           init_schema[i] = selected_schame;
         }
       }
-      this.props.formData.changeData(init_schema);
+      this.props.formData.changeData(init_schema, schema);
     }
   }, {
     key: 'changeData',
@@ -175,6 +178,12 @@ var BasicDemo = function (_React$Component) {
         })(_react2.default.createElement(_checkbox2.default, data));
       }
       if (schema.element == 'Select') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_select2.default, data));
+      }
+      if (schema.element == 'Area') {
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
           initialValue: schema['defaultValue']

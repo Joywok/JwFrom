@@ -34,16 +34,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Select = function (_Component) {
-  _inherits(Select, _Component);
+var Area = function (_Component) {
+  _inherits(Area, _Component);
 
-  function Select() {
-    _classCallCheck(this, Select);
+  function Area() {
+    _classCallCheck(this, Area);
 
-    return _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Area.__proto__ || Object.getPrototypeOf(Area)).apply(this, arguments));
   }
 
-  _createClass(Select, [{
+  _createClass(Area, [{
     key: 'onChange',
     value: function onChange(value, schema) {
       this.props.onChange(value, schema);
@@ -99,7 +99,7 @@ var Select = function (_Component) {
     }
   }]);
 
-  return Select;
+  return Area;
 }(_react.Component);
 
-exports.default = Select;
+exports.default = Area;
