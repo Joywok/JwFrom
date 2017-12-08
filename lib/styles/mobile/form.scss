@@ -2848,3 +2848,16 @@ input{
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.21);
   }
 } 
+
+.am-refill{
+
+  .form-refill{
+    float: left;
+  }
+
+  .refill-open-icon{
+    float: right;
+    margin-right: (20/$fz)+rem;
+  }
+
+}

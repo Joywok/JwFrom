@@ -44,6 +44,10 @@ var _select = require('./editors/mobile/select');
 
 var _select2 = _interopRequireDefault(_select);
 
+var _Section = require('./editors/mobile/Section');
+
+var _Section2 = _interopRequireDefault(_Section);
+
 var _textarea = require('./editors/mobile/textarea');
 
 var _textarea2 = _interopRequireDefault(_textarea);
@@ -63,6 +67,10 @@ var _rate2 = _interopRequireDefault(_rate);
 var _area = require('./editors/mobile/area');
 
 var _area2 = _interopRequireDefault(_area);
+
+var _refill = require('./editors/mobile/refill');
+
+var _refill2 = _interopRequireDefault(_refill);
 
 var _custom = require('./editors/mobile/custom');
 
@@ -158,59 +166,72 @@ var BasicDemo = function (_React$Component) {
       var component = '';
       if (schema.element == 'Input') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_input2.default, data));
       }
       if (schema.element == 'Radio') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_radio2.default, data));
       }
       if (schema.element == 'Checkbox') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please input your' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_checkbox2.default, data));
       }
       if (schema.element == 'Select') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_select2.default, data));
       }
       if (schema.element == 'Area') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_select2.default, data));
       }
+      if (schema.element == 'Refill') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_refill2.default, data));
+      }
+      if (schema.element == 'Section') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_Section2.default, data));
+      }
       if (schema.element == 'Textarea') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_textarea2.default, data));
       }
       if (schema.element == 'DatePicker') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_datepicker2.default, data));
       }
       if (schema.element == 'Switch') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_switch2.default, data));
       }
 
       if (schema.element == 'Rate') {
         component = getFieldDecorator(schema["name"], {
-          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_rate2.default, data));
       }
