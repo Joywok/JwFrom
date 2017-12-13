@@ -2860,4 +2860,39 @@ input{
     margin-right: (20/$fz)+rem;
   }
 
+  .refill-page{
+    position: fixed;
+    z-index:1000;
+    top: 0;
+    left: 10rem;
+    background: #fff;
+    height: (2*$fz)+rem;
+    width: 10rem;
+    .refill-input {
+      .am-input-control{
+        padding-left: 20px;
+        border: 1px solid #ccc;
+        width: (394/$fz)+rem;
+        margin-left: (10/$fz)+rem;
+      }
+    }
+    .refill-group{
+      float: left;
+      width: 10rem;
+      border-bottom: 1px solid #ccc;
+      .refill-item{
+        clear: both;
+        width: 10rem;
+        .refill-label{
+          float: left;
+          margin-left: 20px;
+        }
+        .refill-value{
+          float: right;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
 }

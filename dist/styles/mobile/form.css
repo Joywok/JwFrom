@@ -3244,3 +3244,35 @@ input {
   float: right;
   margin-right: 0.4830917874rem;
 }
+.am-refill .refill-page {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 10rem;
+  background: #fff;
+  height: 82.8rem;
+  width: 10rem;
+}
+.am-refill .refill-page .refill-input .am-input-control {
+  padding-left: 20px;
+  border: 1px solid #ccc;
+  width: 9.5169082126rem;
+  margin-left: 0.2415458937rem;
+}
+.am-refill .refill-page .refill-group {
+  float: left;
+  width: 10rem;
+  border-bottom: 1px solid #ccc;
+}
+.am-refill .refill-page .refill-group .refill-item {
+  clear: both;
+  width: 10rem;
+}
+.am-refill .refill-page .refill-group .refill-item .refill-label {
+  float: left;
+  margin-left: 20px;
+}
+.am-refill .refill-page .refill-group .refill-item .refill-value {
+  float: right;
+  margin-right: 20px;
+}

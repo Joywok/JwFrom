@@ -4,7 +4,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _inputItem = require('jw-components-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('jw-components-mobile/lib/input-item/style');
 
 var _react = require('react');
 
@@ -23,16 +29,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Refill = function (_Component) {
 	_inherits(Refill, _Component);
 
-	function Refill() {
+	function Refill(props) {
 		_classCallCheck(this, Refill);
 
-		return _possibleConstructorReturn(this, (Refill.__proto__ || Object.getPrototypeOf(Refill)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (Refill.__proto__ || Object.getPrototypeOf(Refill)).call(this, props));
+
+		_this.state = {
+			pageClass: "refill-page hide"
+		};
+		return _this;
 	}
 
 	_createClass(Refill, [{
 		key: 'onChange',
 		value: function onChange(value, schema) {
+
+			var self = this;
+			setTimeout(function () {
+				self.state.pageClass = "refill-page hide";
+				self.setState(self.state);
+			}, 2500);
+			console.log(this.state.left, "left");
+			$(".refill-page").animate({ left: this.state.left }, 2500);
 			this.props.onChange(value, schema);
+			var propsSchema = this.props.schema;
+			if (propsSchema['events'] && propsSchema['events']['onChange']) {
+				propsSchema['events']['onChange'].call(this, arguments);
+			}
+		}
+	}, {
+		key: 'onSearchChange',
+		value: function onSearchChange(value, schema) {
+			this.props.onChange(value, { name: schema.name + "_refill" });
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
 				propsSchema['events']['onChange'].call(this, arguments);
@@ -50,21 +78,75 @@ var Refill = function (_Component) {
 	}, {
 		key: 'openSearch',
 		value: function openSearch(schema) {
-			console.log(schema);
+			this.state.pageClass = "refill-page";
+			console.log($(".refill-page").offset().left);
+			this.state.left = $(".refill-page").offset().left;
+			this.setState(this.state);
+			$(".refill-page").animate({ left: 0 }, 500);
+		}
+
+		// refill(schema, dataItem){
+		// 	this.props.onChange(dataItem,schema);
+		// 	let propsSchema = this.props.schema;
+		// 	if(propsSchema['events'] && propsSchema['events']['onChange']){
+		// 		propsSchema['events']['onChange'].call(this,arguments);
+		// 	}
+		// }
+
+	}, {
+		key: 'view',
+		value: function view() {
+			var self = this;
+			var schema = this.props.schema;
+			var a = _.map(schema.dataList, function (dataItem) {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'refill-group', onClick: self.onChange.bind(self, dataItem, schema) },
+					_.map(schema.viewSchema, function (viewItem) {
+						return _react2.default.createElement(
+							'div',
+							{ className: 'refill-item' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'refill-label' },
+								viewItem.label
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'refill-value' },
+								dataItem[viewItem.key]
+							)
+						);
+					})
+				);
+			});
+
+			return a;
 		}
 	}, {
 		key: 'render',
 		value: function render() {
+			var _this2 = this;
+
 			var schema = this.props.schema;
 			var self = this;
 			return _react2.default.createElement(
 				'div',
-				{ className: 'Form-item-w', ref: 'container' },
+				{ className: 'Form-item-w am-refill', ref: 'container' },
 				this.getLabel(schema.label),
 				_react2.default.createElement(
 					'div',
-					{ className: 'refill-open-icon', onClick: this.openSearch.bind(schema) },
+					{ className: 'refill-open-icon', onClick: this.openSearch.bind(self, schema) },
 					'\u2192'
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: self.state.pageClass },
+					_react2.default.createElement('div', null),
+					_react2.default.createElement(_inputItem2.default, { className: 'refill-input', placeholder: schema.placeholder, onChange: function onChange(value) {
+							return _this2.onSearchChange(value, schema);
+						} }),
+					self.view()
 				)
 			);
 		}

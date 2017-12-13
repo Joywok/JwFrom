@@ -124,7 +124,7 @@ var BasicDemo = function (_React$Component) {
           init_schema[i] = selected_schame;
         }
       }
-      this.props.formData.changeData(init_schema, schema);
+      this.props.formData.changeData(init_schema, schema, value);
     }
   }, {
     key: 'changeData',
@@ -291,7 +291,6 @@ var BasicDemo = function (_React$Component) {
             )
           );
         } else {
-          console.log(self.getFields(item, index));
           return self.getFields(item, index);
         }
       });
