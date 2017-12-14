@@ -2870,7 +2870,7 @@ input{
     width: 10rem;
     .refill-input {
       .am-input-control{
-        padding-left: 20px;
+        padding-left: (20/$fz)+rem;
         border: 1px solid #ccc;
         width: (394/$fz)+rem;
         margin-left: (10/$fz)+rem;
@@ -2885,14 +2885,45 @@ input{
         width: 10rem;
         .refill-label{
           float: left;
-          margin-left: 20px;
+          margin-left: (20/$fz)+rem;
         }
         .refill-value{
           float: right;
-          margin-right: 20px;
+          margin-right: (20/$fz)+rem;
         }
       }
     }
   }
 
 }
+
+.am-section{
+  font-size: (15/$fz)+rem;
+  .section-logo{
+    height: (30/$fz)+rem;
+    width: (30/$fz)+rem;
+    float: left;
+    margin-top: (7/$fz)+rem;
+    margin-right: (10/$fz)+rem;
+
+  }
+
+  .section-label{
+    float: left;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

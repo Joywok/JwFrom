@@ -42,7 +42,17 @@ var Section = function (_Component) {
     key: 'getLabel',
     value: function getLabel(txt) {
       if (txt) {
-        return _react2.default.createElement('div', { className: 'label form-section', dangerouslySetInnerHTML: { __html: txt } });
+        return _react2.default.createElement('div', { className: 'label section-label', dangerouslySetInnerHTML: { __html: txt } });
+      } else {
+        return '';
+      }
+    }
+  }, {
+    key: 'getLogo',
+    value: function getLogo(logo) {
+
+      if (logo) {
+        return _react2.default.createElement('img', { className: 'section-logo', src: logo });
       } else {
         return '';
       }
@@ -54,7 +64,8 @@ var Section = function (_Component) {
       var self = this;
       return _react2.default.createElement(
         'div',
-        { className: 'Form-item-w', ref: 'container' },
+        { className: 'Form-item-w am-section', ref: 'container' },
+        this.getLogo(schema.logo),
         this.getLabel(schema.label)
       );
     }

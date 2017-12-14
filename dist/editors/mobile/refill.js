@@ -48,9 +48,9 @@ var Refill = function (_Component) {
 			setTimeout(function () {
 				self.state.pageClass = "refill-page hide";
 				self.setState(self.state);
-			}, 2500);
+			}, 500);
 			console.log(this.state.left, "left");
-			$(".refill-page").animate({ left: this.state.left }, 2500);
+			$(".refill-page").animate({ left: this.state.left }, 500);
 			this.props.onChange(value, schema);
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
@@ -79,20 +79,10 @@ var Refill = function (_Component) {
 		key: 'openSearch',
 		value: function openSearch(schema) {
 			this.state.pageClass = "refill-page";
-			console.log($(".refill-page").offset().left);
-			this.state.left = $(".refill-page").offset().left;
+			this.state.left = this.state.left = $("body").width();
 			this.setState(this.state);
 			$(".refill-page").animate({ left: 0 }, 500);
 		}
-
-		// refill(schema, dataItem){
-		// 	this.props.onChange(dataItem,schema);
-		// 	let propsSchema = this.props.schema;
-		// 	if(propsSchema['events'] && propsSchema['events']['onChange']){
-		// 		propsSchema['events']['onChange'].call(this,arguments);
-		// 	}
-		// }
-
 	}, {
 		key: 'view',
 		value: function view() {
@@ -130,9 +120,10 @@ var Refill = function (_Component) {
 
 			var schema = this.props.schema;
 			var self = this;
+			var className = "Form-item-w am-refill " + schema.className;
 			return _react2.default.createElement(
 				'div',
-				{ className: 'Form-item-w am-refill', ref: 'container' },
+				{ className: className, ref: 'container' },
 				this.getLabel(schema.label),
 				_react2.default.createElement(
 					'div',

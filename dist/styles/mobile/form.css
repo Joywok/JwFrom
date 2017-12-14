@@ -3254,7 +3254,7 @@ input {
   width: 10rem;
 }
 .am-refill .refill-page .refill-input .am-input-control {
-  padding-left: 20px;
+  padding-left: 0.4830917874rem;
   border: 1px solid #ccc;
   width: 9.5169082126rem;
   margin-left: 0.2415458937rem;
@@ -3270,9 +3270,23 @@ input {
 }
 .am-refill .refill-page .refill-group .refill-item .refill-label {
   float: left;
-  margin-left: 20px;
+  margin-left: 0.4830917874rem;
 }
 .am-refill .refill-page .refill-group .refill-item .refill-value {
   float: right;
-  margin-right: 20px;
+  margin-right: 0.4830917874rem;
+}
+
+.am-section {
+  font-size: 0.3623188406rem;
+}
+.am-section .section-logo {
+  height: 0.7246376812rem;
+  width: 0.7246376812rem;
+  float: left;
+  margin-top: 0.1690821256rem;
+  margin-right: 0.2415458937rem;
+}
+.am-section .section-label {
+  float: left;
 }
