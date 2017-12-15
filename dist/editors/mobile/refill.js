@@ -18,6 +18,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _rcForm = require('rc-form');
 
+var _refill2x = require('../../images/refill@2x.png');
+
+var _refill2x2 = _interopRequireDefault(_refill2x);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35,7 +39,8 @@ var Refill = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Refill.__proto__ || Object.getPrototypeOf(Refill)).call(this, props));
 
 		_this.state = {
-			pageClass: "refill-page hide"
+			pageClass: "refill-page hide",
+			placeholderClass: "refill-placeholder"
 		};
 		return _this;
 	}
@@ -49,7 +54,6 @@ var Refill = function (_Component) {
 				self.state.pageClass = "refill-page hide";
 				self.setState(self.state);
 			}, 500);
-			console.log(this.state.left, "left");
 			$(".refill-page").animate({ left: this.state.left }, 500);
 			this.props.onChange(value, schema);
 			var propsSchema = this.props.schema;
@@ -114,6 +118,21 @@ var Refill = function (_Component) {
 			return a;
 		}
 	}, {
+		key: 'focus',
+		value: function focus() {
+			this.state.placeholderClass = "refill-placeholder hide";
+			this.setState(this.state);
+			$('.refill-input').find("input").focus();
+		}
+	}, {
+		key: 'onBlur',
+		value: function onBlur(value, schema) {
+			if (value == "") {
+				this.state.placeholderClass = "refill-placeholder";
+				this.setState(this.state);
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
@@ -128,14 +147,25 @@ var Refill = function (_Component) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'refill-open-icon', onClick: this.openSearch.bind(self, schema) },
-					'\u2192'
+					_react2.default.createElement('img', { src: _refill2x2.default })
 				),
 				_react2.default.createElement(
 					'div',
 					{ className: self.state.pageClass },
-					_react2.default.createElement('div', null),
-					_react2.default.createElement(_inputItem2.default, { className: 'refill-input', placeholder: schema.placeholder, onChange: function onChange(value) {
+					_react2.default.createElement(
+						'div',
+						{ className: this.state.placeholderClass, onClick: this.focus.bind(self) },
+						_react2.default.createElement(
+							'div',
+							{ className: 'refill-label-search' },
+							_react2.default.createElement('div', { className: 'refill-icon-search' }),
+							schema.placeholder
+						)
+					),
+					_react2.default.createElement(_inputItem2.default, { className: 'refill-input', onChange: function onChange(value) {
 							return _this2.onSearchChange(value, schema);
+						}, onBlur: function onBlur(value) {
+							return _this2.onBlur(value, schema);
 						} }),
 					self.view()
 				)

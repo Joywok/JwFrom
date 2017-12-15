@@ -2726,7 +2726,8 @@ input{
   }
   .Form-item-w{
     margin:0 0 0 (15/41.4)+rem;
-    line-height: (44/41.4)+rem;
+    line-height: (50/41.4)+rem;
+    font-size: (16/41.4)+rem;
     overflow: hidden;
     .ant-form-item-label{
       float: left;
@@ -2853,11 +2854,16 @@ input{
 
   .form-refill{
     float: left;
+    color:#6ac9ff;
   }
 
   .refill-open-icon{
     float: right;
     margin-right: (20/$fz)+rem;
+    img{
+      width: (23/$fz)+rem;
+      height: (22/$fz)+rem;
+    }
   }
 
   .refill-page{
@@ -2869,13 +2875,50 @@ input{
     height: (2*$fz)+rem;
     width: 10rem;
     .refill-input {
+      min-height: (44/$fz)+rem;
+      lin-height: (44/$fz)+rem;
+      background:rgba(231,231,231,0.90);
       .am-input-control{
-        padding-left: (20/$fz)+rem;
-        border: 1px solid #ccc;
+        background: #fff;
         width: (394/$fz)+rem;
         margin-left: (10/$fz)+rem;
+        flex: none;
+        input{
+          padding-left: (10/$fz)+rem !important;
+        }
       }
     }
+    .refill-placeholder{
+      position: absolute;
+      width: (394/$fz)+rem;
+      top: (10/$fz)+rem;
+      z-index: 100;
+      .refill-label-search{
+        text-align: center;
+        .refill-icon-search{
+          width: (12/$fz)+rem;
+          height: (12/$fz)+rem;
+          border-radius: 100%;
+          border:(2/$fz)+rem solid currentcolor;
+          position: relative;
+          display: -webkit-inline-box;
+          margin-right: (10/$fz)+rem;
+        }
+        .refill-icon-search:after{
+          content: "";
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          transform: rotate(45deg);
+          width:(8/$fz)+rem;
+          height: (2/$fz)+rem;
+          position: absolute;
+          top:(13/$fz)+rem;
+          left:(11/$fz)+rem;
+          background-color: currentcolor;
+        }
+      }
+    }
+
     .refill-group{
       float: left;
       width: 10rem;
@@ -2896,23 +2939,33 @@ input{
   }
 
 }
+.form-item-Section {
+  width: 10rem;
+  margin-left:(-10/$fz)+rem;
+  .am-section{
+    font-size: (16/$fz)+rem;
+    color: #333;
+    margin-left: 0;
+    .section-line{
+      width: 10rem;
+      height: (16/$fz)+rem;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+    .section-logo{
+      height: (30/$fz)+rem;
+      width: (30/$fz)+rem;
+      float: left;
+      margin: (20/$fz)+rem (12/$fz)+rem (20/$fz)+rem (20/$fz)+rem;
 
-.am-section{
-  font-size: (15/$fz)+rem;
-  .section-logo{
-    height: (30/$fz)+rem;
-    width: (30/$fz)+rem;
-    float: left;
-    margin-top: (7/$fz)+rem;
-    margin-right: (10/$fz)+rem;
+    }
 
-  }
-
-  .section-label{
-    float: left;
+    .section-label{
+      float: left;
+      line-height: (70/$fz)+rem;
+    }
   }
 }
-
 
 
 

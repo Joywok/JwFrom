@@ -3126,7 +3126,8 @@ input {
 }
 .ant-form-item .Form-item-w {
   margin: 0 0 0 0.3623188406rem;
-  line-height: 1.0628019324rem;
+  line-height: 1.2077294686rem;
+  font-size: 0.38647343rem;
   overflow: hidden;
 }
 .ant-form-item .Form-item-w .ant-form-item-label {
@@ -3239,10 +3240,15 @@ input {
 
 .am-refill .form-refill {
   float: left;
+  color: #6ac9ff;
 }
 .am-refill .refill-open-icon {
   float: right;
   margin-right: 0.4830917874rem;
+}
+.am-refill .refill-open-icon img {
+  width: 0.5555555556rem;
+  height: 0.5314009662rem;
 }
 .am-refill .refill-page {
   position: fixed;
@@ -3253,11 +3259,49 @@ input {
   height: 82.8rem;
   width: 10rem;
 }
+.am-refill .refill-page .refill-input {
+  min-height: 1.0628019324rem;
+  lin-height: 1.0628019324rem;
+  background: rgba(231, 231, 231, 0.9);
+}
 .am-refill .refill-page .refill-input .am-input-control {
-  padding-left: 0.4830917874rem;
-  border: 1px solid #ccc;
+  background: #fff;
   width: 9.5169082126rem;
   margin-left: 0.2415458937rem;
+  flex: none;
+}
+.am-refill .refill-page .refill-input .am-input-control input {
+  padding-left: 0.2415458937rem !important;
+}
+.am-refill .refill-page .refill-placeholder {
+  position: absolute;
+  width: 9.5169082126rem;
+  top: 0.2415458937rem;
+  z-index: 100;
+}
+.am-refill .refill-page .refill-placeholder .refill-label-search {
+  text-align: center;
+}
+.am-refill .refill-page .refill-placeholder .refill-label-search .refill-icon-search {
+  width: 0.2898550725rem;
+  height: 0.2898550725rem;
+  border-radius: 100%;
+  border: 0.0483091787rem solid currentcolor;
+  position: relative;
+  display: -webkit-inline-box;
+  margin-right: 0.2415458937rem;
+}
+.am-refill .refill-page .refill-placeholder .refill-label-search .refill-icon-search:after {
+  content: "";
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 0.193236715rem;
+  height: 0.0483091787rem;
+  position: absolute;
+  top: 0.3140096618rem;
+  left: 0.2657004831rem;
+  background-color: currentcolor;
 }
 .am-refill .refill-page .refill-group {
   float: left;
@@ -3277,16 +3321,28 @@ input {
   margin-right: 0.4830917874rem;
 }
 
-.am-section {
-  font-size: 0.3623188406rem;
+.form-item-Section {
+  width: 10rem;
+  margin-left: -0.2415458937rem;
 }
-.am-section .section-logo {
+.form-item-Section .am-section {
+  font-size: 0.38647343rem;
+  color: #333;
+  margin-left: 0;
+}
+.form-item-Section .am-section .section-line {
+  width: 10rem;
+  height: 0.38647343rem;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+.form-item-Section .am-section .section-logo {
   height: 0.7246376812rem;
   width: 0.7246376812rem;
   float: left;
-  margin-top: 0.1690821256rem;
-  margin-right: 0.2415458937rem;
+  margin: 0.4830917874rem 0.2898550725rem 0.4830917874rem 0.4830917874rem;
 }
-.am-section .section-label {
+.form-item-Section .am-section .section-label {
   float: left;
+  line-height: 1.690821256rem;
 }
