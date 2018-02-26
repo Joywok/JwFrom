@@ -44,7 +44,8 @@ var RangePicker = function (_Component) {
 	_createClass(RangePicker, [{
 		key: 'onChangeStart',
 		value: function onChangeStart(value, schema) {
-			this.props.onChange(value.format('X'), schema, "start");
+			console.log(schema);
+			this.props.onChange(value.format('X'), schema.schema[0], "start");
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
 				propsSchema['events']['onChange'].call(this, arguments);
@@ -53,7 +54,7 @@ var RangePicker = function (_Component) {
 	}, {
 		key: 'onChangeEnd',
 		value: function onChangeEnd(value, schema) {
-			this.props.onChange(value.format('X'), schema, "end");
+			this.props.onChange(value.format('X'), schema.schema[1], "end");
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
 				propsSchema['events']['onChange'].call(this, arguments);
@@ -84,25 +85,26 @@ var RangePicker = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var schema = this.props.schema;
+			console.log(schema, 'xxx');
 			var self = this;
 			var dataStart = Object.assign({}, {
 				mode: "date",
 				title: "选择开始日期",
 				disabled: false,
-				value: schema['defaultValue'] ? (0, _moment2.default)(schema['defaultValue'] * 1000) : (0, _moment2.default)(),
+				value: schema.schema[0]['defaultValue'] ? (0, _moment2.default)(schema.schema[0]['defaultValue'] * 1000) : (0, _moment2.default)(),
 				format: function format(val) {
-					return val.format('YYYY-MM-DD HH:mm:ss');
+					return val.format(schema.schema[0]['format'] ? schema.schema[0]['format'] : 'YYYY-MM-DD HH:mm:ss');
 				}
-			}, schema['attr'], schema["events"]);
+			}, schema.schema[0]['attr'], schema.schema[0]["events"]);
 			var dataEnd = Object.assign({}, {
 				mode: "date",
 				title: "选择结束日期",
 				disabled: false,
-				value: schema['defaultValue'] ? (0, _moment2.default)(schema['defaultValue'] * 1000) : (0, _moment2.default)(),
+				value: schema.schema[1]['defaultValue'] ? (0, _moment2.default)(schema.schema[1]['defaultValue'] * 1000) : (0, _moment2.default)(),
 				format: function format(val) {
-					return val.format('YYYY-MM-DD HH:mm:ss');
+					return val.format(schema.schema[1]['format'] ? schema.schema[1]['format'] : 'YYYY-MM-DD HH:mm:ss');
 				}
-			}, schema['attr'], schema["events"]);
+			}, schema.schema[1]['attr'], schema.schema[1]["events"]);
 			var targetStart = _react2.default.createElement(
 				_datePicker2.default,
 				_extends({}, dataStart, { onChange: function onChange(e) {
