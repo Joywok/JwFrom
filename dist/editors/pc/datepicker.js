@@ -63,6 +63,7 @@ var DateCustom = function (_Component) {
 			if (schema['type'] == 'month') {
 				target = _react2.default.createElement(MonthPicker, data);
 			} else if (schema['type'] == 'range') {
+				console.log(1, "newlog");
 				target = _react2.default.createElement(RangePicker, data);
 			} else {
 				target = _react2.default.createElement(_datePicker2.default, data);

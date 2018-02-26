@@ -2967,6 +2967,45 @@ input{
   }
 }
 
+.datapicker-start{
+  .am-list-arrow-horizontal{
+    display: none !important;
+  }
+  float: right;
+  width: (110/$fz)+rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  .am-list-extra{
+    width: (84/$fz)+rem;
+    overflow: hidden;
+    text-overflow: unset;
+  }
+}
+
+.rangepicker-line{
+    
+    float: right;
+    padding-top: (13/$fz)+rem;
+    color: #b0b0b0;
+
+}
+
+.datapicker-end{
+  float: right;
+  width: (127/$fz)+rem;
+  margin-left: 0 !important;
+  .am-list-arrow-horizontal{
+  }
+  .am-list-extra{
+    width: (84/$fz)+rem !important;
+    overflow: hidden !important;
+    text-overflow: unset !important;
+  }
+}
+
+.ant-form-item .Form-item-w .ant-form-item-label{
+  line-height: 1.2077294686rem;
+}
 
 
 

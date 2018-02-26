@@ -56,6 +56,10 @@ var _datepicker = require('./editors/mobile/datepicker');
 
 var _datepicker2 = _interopRequireDefault(_datepicker);
 
+var _rangepicker = require('./editors/mobile/rangepicker');
+
+var _rangepicker2 = _interopRequireDefault(_rangepicker);
+
 var _switch = require('./editors/mobile/switch');
 
 var _switch2 = _interopRequireDefault(_switch);
@@ -221,6 +225,12 @@ var BasicDemo = function (_React$Component) {
           rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_datepicker2.default, data));
+      }
+      if (schema.element == 'ComboEle') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_rangepicker2.default, data));
       }
       if (schema.element == 'Switch') {
         component = getFieldDecorator(schema["name"], {
