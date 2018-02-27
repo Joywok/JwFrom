@@ -3347,38 +3347,28 @@ input {
   line-height: 1.690821256rem;
 }
 
-.datapicker-start {
-  float: right;
-  width: 2.6570048309rem;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-.datapicker-start .am-list-arrow-horizontal {
-  display: none !important;
-}
-.datapicker-start .am-list-extra {
-  width: 2.0289855072rem;
-  overflow: hidden;
-  text-overflow: unset;
-}
-
-.rangepicker-line {
-  float: right;
-  padding-top: 0.3140096618rem;
-  color: #b0b0b0;
-}
-
-.datapicker-end {
-  float: right;
-  width: 3.0676328502rem;
-  margin-left: 0 !important;
-}
-.datapicker-end .am-list-extra {
-  width: 2.0289855072rem !important;
-  overflow: hidden !important;
-  text-overflow: unset !important;
-}
-
 .ant-form-item .Form-item-w .ant-form-item-label {
   line-height: 1.2077294686rem;
+}
+
+.rangepicker-title {
+  width: 10rem;
+}
+
+.rangepicker-start {
+  float: left;
+}
+.rangepicker-start .rangepicker-start-label {
+  float: left;
+  line-height: 1.1352657005rem;
+  color: #999;
+}
+.rangepicker-start .Form-item-c {
+  float: left;
+  width: 8.309178744rem !important;
+  margin: 0 !important;
+}
+.rangepicker-start .Form-item-c .am-list-item .am-list-line .am-list-extra {
+  text-align: left !important;
+  padding-left: 0.7246376812rem !important;
 }

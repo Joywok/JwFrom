@@ -44,7 +44,7 @@ var RangePicker = function (_Component) {
 	_createClass(RangePicker, [{
 		key: 'onChangeStart',
 		value: function onChangeStart(value, schema) {
-			console.log(schema);
+			console.log(schema, value);
 			this.props.onChange(value.format('X'), schema.schema[0], "start");
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
@@ -89,7 +89,7 @@ var RangePicker = function (_Component) {
 			var self = this;
 			var dataStart = Object.assign({}, {
 				mode: "date",
-				title: "选择开始日期",
+				title: "开始",
 				disabled: false,
 				value: schema.schema[0]['defaultValue'] ? (0, _moment2.default)(schema.schema[0]['defaultValue'] * 1000) : (0, _moment2.default)(),
 				format: function format(val) {
@@ -98,7 +98,7 @@ var RangePicker = function (_Component) {
 			}, schema.schema[0]['attr'], schema.schema[0]["events"]);
 			var dataEnd = Object.assign({}, {
 				mode: "date",
-				title: "选择结束日期",
+				title: "结束",
 				disabled: false,
 				value: schema.schema[1]['defaultValue'] ? (0, _moment2.default)(schema.schema[1]['defaultValue'] * 1000) : (0, _moment2.default)(),
 				format: function format(val) {
@@ -123,13 +123,13 @@ var RangePicker = function (_Component) {
 				var Template = schema["other"]['template'];
 				targetStart = _react2.default.createElement(
 					'div',
-					{ className: 'Form-item-c datapicker-start' },
+					{ className: 'Form-item-c' },
 					_react2.default.createElement(Template, { children: targetStart, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
 				);
 			} else {
 				targetStart = _react2.default.createElement(
 					'div',
-					{ className: 'Form-item-c datapicker-start' },
+					{ className: 'Form-item-c' },
 					targetStart
 				);
 			}
@@ -138,28 +138,41 @@ var RangePicker = function (_Component) {
 				var _Template = schema["other"]['template'];
 				targetEnd = _react2.default.createElement(
 					'div',
-					{ className: 'Form-item-c datapicker-end' },
+					{ className: 'Form-item-c' },
 					_react2.default.createElement(_Template, { children: targetEnd, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
 				);
 			} else {
 				targetEnd = _react2.default.createElement(
 					'div',
-					{ className: 'Form-item-c datapicker-end' },
+					{ className: 'Form-item-c' },
 					targetEnd
 				);
 			}
 			return _react2.default.createElement(
 				'div',
 				{ className: "Form-item-w " + this._init_layout(), ref: 'container' },
-				this.getLabel(schema.label),
 				_react2.default.createElement(
 					'div',
-					null,
-					targetEnd,
+					{ className: 'rangepicker-title' },
+					this.getLabel(schema.label)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'rangepicker-start' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'rangepicker-line' },
-						'~'
+						{ className: 'rangepicker-start-label' },
+						schema.schema[0]['label']
+					),
+					targetStart
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'rangepicker-start' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'rangepicker-start-label' },
+						schema.schema[1]['label']
 					),
 					targetStart
 				)

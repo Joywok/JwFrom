@@ -2967,50 +2967,37 @@ input{
   }
 }
 
-.datapicker-start{
-  .am-list-arrow-horizontal{
-    display: none !important;
-  }
-  float: right;
-  width: (110/$fz)+rem;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  .am-list-extra{
-    width: (84/$fz)+rem;
-    overflow: hidden;
-    text-overflow: unset;
-  }
-}
-
-.rangepicker-line{
-    
-    float: right;
-    padding-top: (13/$fz)+rem;
-    color: #b0b0b0;
-
-}
-
-.datapicker-end{
-  float: right;
-  width: (127/$fz)+rem;
-  margin-left: 0 !important;
-  .am-list-arrow-horizontal{
-  }
-  .am-list-extra{
-    width: (84/$fz)+rem !important;
-    overflow: hidden !important;
-    text-overflow: unset !important;
-  }
-}
 
 .ant-form-item .Form-item-w .ant-form-item-label{
   line-height: 1.2077294686rem;
 }
 
 
+.rangepicker-title{
+  
+  width: (414/$fz)+rem;
 
+}
 
+.rangepicker-start{
+  float: left;
+  .rangepicker-start-label{
+    float: left;
+    line-height: (47/$fz)+rem;
+    color: #999;
+  }
+  .Form-item-c{
+    float: left;
+    width: (344/$fz)+rem !important;
+    margin: 0 !important;
 
+    .am-list-item .am-list-line .am-list-extra{
+      text-align: left !important;
+      padding-left: (30/$fz)+rem !important;
+    }
+
+  }
+}
 
 
 
