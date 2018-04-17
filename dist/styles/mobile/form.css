@@ -3241,10 +3241,12 @@ input {
 .am-refill .form-refill {
   float: left;
   color: #6ac9ff;
+  line-height: 1.2077294686rem;
 }
 .am-refill .refill-open-icon {
   float: right;
   margin-right: 0.4830917874rem;
+  line-height: 1.2077294686rem;
 }
 .am-refill .refill-open-icon img {
   width: 0.5555555556rem;
@@ -3328,7 +3330,6 @@ input {
 .form-item-Section .am-section {
   font-size: 0.38647343rem;
   color: #333;
-  margin-left: 0;
 }
 .form-item-Section .am-section .section-line {
   width: 10rem;
@@ -3371,4 +3372,14 @@ input {
 .rangepicker-start .Form-item-c .am-list-item .am-list-line .am-list-extra {
   text-align: left !important;
   padding-left: 0.7246376812rem !important;
+}
+
+.selobjs-icon {
+  float: right;
+  margin-right: 0.4830917874rem;
+  line-height: 1.2077294686rem;
+}
+.selobjs-icon img {
+  width: 0.5555555556rem;
+  height: 0.5314009662rem;
 }

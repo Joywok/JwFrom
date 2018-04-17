@@ -2855,11 +2855,13 @@ input{
   .form-refill{
     float: left;
     color:#6ac9ff;
+    line-height: 1.2077294686rem;
   }
 
   .refill-open-icon{
     float: right;
     margin-right: (20/$fz)+rem;
+    line-height: 1.2077294686rem;
     img{
       width: (23/$fz)+rem;
       height: (22/$fz)+rem;
@@ -2945,7 +2947,6 @@ input{
   .am-section{
     font-size: (16/$fz)+rem;
     color: #333;
-    margin-left: 0;
     .section-line{
       width: 10rem;
       height: (16/$fz)+rem;
@@ -2999,10 +3000,12 @@ input{
   }
 }
 
-
-
-
-
-
-
-
+.selobjs-icon{
+  float: right;
+  margin-right: (20/$fz)+rem;
+  line-height: 1.2077294686rem;
+  img{
+    width: (23/$fz)+rem;
+    height: (22/$fz)+rem;
+  }
+}

@@ -80,6 +80,10 @@ var _custom = require('./editors/mobile/custom');
 
 var _custom2 = _interopRequireDefault(_custom);
 
+var _SelObjs = require('./editors/mobile/SelObjs');
+
+var _SelObjs2 = _interopRequireDefault(_SelObjs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -225,6 +229,12 @@ var BasicDemo = function (_React$Component) {
           rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_datepicker2.default, data));
+      }
+      if (schema.element == 'SelObjs') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_SelObjs2.default, data));
       }
       if (schema.element == 'ComboEle') {
         component = getFieldDecorator(schema["name"], {
