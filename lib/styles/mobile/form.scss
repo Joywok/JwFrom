@@ -3009,3 +3009,20 @@ input{
     height: (22/$fz)+rem;
   }
 }
+
+.file-upload-label{
+  line-height: 1.2077294686rem;
+  float: right;
+  margin-right: (18/$fz)+rem;
+  color:#62b2ff;
+  font-family:PingFangSC-Regular;
+  font-size:(14/$fz)+rem;
+  letter-spacing:0;
+}
+.file-upload-icon{
+  float: right;
+  width: (17/$fz)+rem;
+  height: (17/$fz)+rem;
+  margin-top: (16/$fz)+rem;
+  margin-right: (10/$fz)+rem;
+}

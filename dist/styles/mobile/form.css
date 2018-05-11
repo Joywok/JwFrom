@@ -3383,3 +3383,21 @@ input {
   width: 0.5555555556rem;
   height: 0.5314009662rem;
 }
+
+.file-upload-label {
+  line-height: 1.2077294686rem;
+  float: right;
+  margin-right: 0.4347826087rem;
+  color: #62b2ff;
+  font-family: PingFangSC-Regular;
+  font-size: 0.3381642512rem;
+  letter-spacing: 0;
+}
+
+.file-upload-icon {
+  float: right;
+  width: 0.4106280193rem;
+  height: 0.4106280193rem;
+  margin-top: 0.38647343rem;
+  margin-right: 0.2415458937rem;
+}

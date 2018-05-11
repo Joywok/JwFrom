@@ -84,6 +84,10 @@ var _SelObjs = require('./editors/mobile/SelObjs');
 
 var _SelObjs2 = _interopRequireDefault(_SelObjs);
 
+var _DrivePicker = require('./editors/mobile/DrivePicker');
+
+var _DrivePicker2 = _interopRequireDefault(_DrivePicker);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -204,6 +208,12 @@ var BasicDemo = function (_React$Component) {
           rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_select2.default, data));
+      }
+      if (schema.element == 'DrivePicker') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue']
+        })(_react2.default.createElement(_DrivePicker2.default, data));
       }
       if (schema.element == 'Refill') {
         component = getFieldDecorator(schema["name"], {
