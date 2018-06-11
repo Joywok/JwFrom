@@ -3401,3 +3401,25 @@ input {
   margin-top: 0.38647343rem;
   margin-right: 0.2415458937rem;
 }
+
+.form-item-Upload .upload-label {
+  width: 5.7971014493rem !important;
+  margin-top: 0.7487922705rem;
+  margin-bottom: 0.8212560386rem;
+}
+.form-item-Upload .upload-label .upload-label-txt {
+  line-height: 0.6038647343rem;
+  font-size: 0.38647343rem;
+}
+.form-item-Upload .upload-label .upload-label-desc {
+  line-height: 0.4830917874rem;
+  font-size: 0.3381642512rem;
+  color: #999999;
+  margin-top: 10px;
+}
+.form-item-Upload .Form-item-c img {
+  width: 1.4734299517rem;
+  height: 1.4734299517rem;
+  margin-top: 0.7004830918rem;
+  float: right;
+}

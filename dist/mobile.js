@@ -88,6 +88,10 @@ var _DrivePicker = require('./editors/mobile/DrivePicker');
 
 var _DrivePicker2 = _interopRequireDefault(_DrivePicker);
 
+var _Upload = require('./editors/mobile/Upload');
+
+var _Upload2 = _interopRequireDefault(_Upload);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -175,6 +179,9 @@ var BasicDemo = function (_React$Component) {
         changeSchemas: this.changeSchemas.bind(this),
         index: index
       };
+
+      console.log(data, 'qwe');
+
       var component = '';
       if (schema.element == 'Input') {
         component = getFieldDecorator(schema["name"], {
@@ -196,6 +203,14 @@ var BasicDemo = function (_React$Component) {
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_checkbox2.default, data));
+      }
+      if (schema.element == 'Upload') {
+        console.log(data, 'sadasa');
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_Upload2.default, data));
       }
       if (schema.element == 'Select') {
         component = getFieldDecorator(schema["name"], {

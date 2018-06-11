@@ -3026,3 +3026,33 @@ input{
   margin-top: (16/$fz)+rem;
   margin-right: (10/$fz)+rem;
 }
+
+.form-item-Upload{
+
+  .upload-label{
+    
+      width: (240/$fz)+rem !important;
+      margin-top: (31/$fz)+rem;
+      margin-bottom: (34/$fz)+rem;
+      
+      .upload-label-txt{
+        line-height: (25/$fz)+rem;
+        font-size: (16/$fz)+rem;
+      }
+
+      .upload-label-desc{
+        line-height: (20/$fz)+rem;
+        font-size: (14/$fz)+rem;
+        color: #999999;
+        margin-top: 10px;
+      }
+  }
+  .Form-item-c{
+    img{
+      width: (61/$fz)+rem;
+      height: (61/$fz)+rem;
+      margin-top: (29/$fz)+rem;
+      float: right;
+    }
+  }
+}

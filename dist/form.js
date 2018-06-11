@@ -54,6 +54,10 @@ var _custom = require('./editors/pc/custom');
 
 var _custom2 = _interopRequireDefault(_custom);
 
+var _upload = require('./editors/pc/upload');
+
+var _upload2 = _interopRequireDefault(_upload);
+
 var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
@@ -70,7 +74,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 require('./styles/loading.css');
 
-// import { Input } from 'antd';
+
 var FormItem = _antd.Form.Item;
 var Option = _select2.default.Option;
 
@@ -231,6 +235,14 @@ var BasicDemo = function (_React$Component) {
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_datepicker2.default, _extends({ mode: mode }, data)));
+      }
+
+      if (schema.element == 'Upload') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [{ required: true, message: 'Please select your gender!' }],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_upload2.default, data));
       }
 
       if (schema.element == 'Rate') {
