@@ -204,7 +204,7 @@ var BasicDemo = function (_React$Component) {
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_checkbox2.default, data));
       }
-      if (schema.element == 'UploadLog') {
+      if (schema.element == 'UploadLogo') {
         console.log(data, 'sadasa');
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [],
