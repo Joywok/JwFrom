@@ -12,3 +12,18 @@
   display: inline-flex;
   flex: 1;
 }
+
+.ant-form-item .Form-item-w .ant-form-item-label {
+  line-height: 39px;
+  font-size: 14px;
+  color: #494949;
+  font-weight: 500;
+}
+.ant-form-item .Form-item-w .Form-item-c .ant-input {
+  line-height: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 14px;
+}
