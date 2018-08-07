@@ -28,10 +28,20 @@ var Customs = function (_Component) {
 	}
 
 	_createClass(Customs, [{
+		key: 'getLabel',
+		value: function getLabel(txt) {
+			if (txt) {
+				return _react2.default.createElement('div', { className: 'label ant-form-item-label', dangerouslySetInnerHTML: { __html: txt } });
+			} else {
+				return '';
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var schema = this.props.schema;
 			var target = schema['components'];
+			var self = this;
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(
@@ -48,7 +58,7 @@ var Customs = function (_Component) {
 			}
 			return _react2.default.createElement(
 				'div',
-				{ className: "Form-item-w " + this._init_layout(), ref: 'container' },
+				{ className: 'Form-item-w ', ref: 'container' },
 				this.getLabel(schema.label),
 				target
 			);
