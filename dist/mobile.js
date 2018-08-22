@@ -180,8 +180,6 @@ var BasicDemo = function (_React$Component) {
         index: index
       };
 
-      console.log(data, 'qwe');
-
       var component = '';
       if (schema.element == 'Input') {
         component = getFieldDecorator(schema["name"], {
@@ -205,7 +203,6 @@ var BasicDemo = function (_React$Component) {
         })(_react2.default.createElement(_checkbox2.default, data));
       }
       if (schema.element == 'UploadLogo') {
-        console.log(data, 'sadasa');
         component = getFieldDecorator(schema["name"], {
           rules: schema["rules"] || [],
           initialValue: schema['defaultValue'],

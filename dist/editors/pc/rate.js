@@ -68,7 +68,6 @@ var RateCustom = function (_Component) {
 			if (schema && schema['events']) {
 				data = Object.assign(data, schema["events"]);
 			}
-			console.log(data);
 			var target = _react2.default.createElement(_reactRating2.default, _extends({}, data, { initialRate: schema['defaultValue'], onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
 				} }));

@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _inputItem = require('jw-components-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
 var _radio = require('jw-components-mobile/lib/radio');
 
 var _radio2 = _interopRequireDefault(_radio);
@@ -11,6 +15,8 @@ var _radio2 = _interopRequireDefault(_radio);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('jw-components-mobile/lib/input-item/style');
 
 require('jw-components-mobile/lib/radio/style');
 
@@ -31,10 +37,15 @@ var RadioItem = _radio2.default.RadioItem;
 var Radios = function (_Component) {
 	_inherits(Radios, _Component);
 
-	function Radios() {
+	function Radios(props) {
 		_classCallCheck(this, Radios);
 
-		return _possibleConstructorReturn(this, (Radios.__proto__ || Object.getPrototypeOf(Radios)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (Radios.__proto__ || Object.getPrototypeOf(Radios)).call(this, props));
+
+		_this.state = {
+			schema: _this.props.schema
+		};
+		return _this;
 	}
 
 	_createClass(Radios, [{
@@ -49,6 +60,7 @@ var Radios = function (_Component) {
 	}, {
 		key: 'onChange',
 		value: function onChange(value, schema) {
+			console.log(value, schema, '12312312');
 			this.props.onChange(value, schema);
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
@@ -79,6 +91,21 @@ var Radios = function (_Component) {
 			return nowSchema;
 		}
 	}, {
+		key: 'inputChange',
+		value: function inputChange(value) {
+
+			console.log(value);
+			var self = this;
+			for (var i in this.props.schema.options) {
+				if (this.props.schema.options[i].hasInput) {
+					this.props.schema.options[i].inputValue = value;
+				}
+			}
+			self.setState({
+				schema: this.props.schema
+			});
+		}
+	}, {
 		key: 'resetOptions',
 		value: function resetOptions(data) {
 			var self = this;
@@ -92,7 +119,7 @@ var Radios = function (_Component) {
 	}, {
 		key: '_init_layout',
 		value: function _init_layout() {
-			var schema = this.props.schema;
+			var schema = this.state.schema;
 			if (schema['layout'] == 'horizontal') {
 				return 'layout-horizontal';
 			} else if (schema['layout'] == 'vertical') {
@@ -161,11 +188,20 @@ var Radios = function (_Component) {
 					target
 				);
 			}
+
+			var input = "";
+			for (var i in schema.options) {
+				if (schema.options[i].hasInput) {
+					input = _react2.default.createElement(_inputItem2.default, { className: 'radio-input', onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
+				}
+			}
+
 			return _react2.default.createElement(
 				'div',
 				{ className: "Form-item-w " + this._init_layout(), ref: 'container' },
 				this.getLabel(schema.label),
-				target
+				target,
+				input
 			);
 		}
 	}]);

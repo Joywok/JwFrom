@@ -82,8 +82,6 @@ var UploadMod = function (_Component) {
 				}
 			}, schema["attr"], schema["events"]);
 
-			console.log(data);
-
 			var target = _react2.default.createElement(
 				_upload2.default,
 				_extends({}, data, { onChange: function onChange(e) {
