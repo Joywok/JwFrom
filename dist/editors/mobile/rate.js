@@ -70,7 +70,8 @@ var RateCustom = function (_Component) {
 			if (schema && schema['events']) {
 				data = Object.assign(data, schema["events"]);
 			}
-			var target = _react2.default.createElement(_rate2.default, _extends({}, data, { initialRate: schema['defaultValue'], onChange: function onChange(value) {
+			console.log(schema['attr']);
+			var target = _react2.default.createElement(_rate2.default, _extends({}, data, { defaultValue: schema['defaultValue'], onChange: function onChange(value) {
 					return _this2.onChange(value, schema);
 				} }));
 			if (schema["other"] && schema["other"]['template']) {
