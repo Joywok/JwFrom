@@ -60,7 +60,6 @@ var Radios = function (_Component) {
 	}, {
 		key: 'onChange',
 		value: function onChange(value, schema) {
-			console.log(value, schema, '12312312');
 			this.props.onChange(value, schema);
 			var propsSchema = this.props.schema;
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
