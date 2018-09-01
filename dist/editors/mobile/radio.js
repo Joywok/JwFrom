@@ -67,6 +67,16 @@ var Radios = function (_Component) {
 			}
 		}
 	}, {
+		key: 'onFocus',
+		value: function onFocus(v) {
+			var self = this;
+			for (var i in self.state.schema.options) {
+				if (self.state.schema.options[i].hasInput) {
+					self.onChange(self.state.schema.options[i].value, self.state.schema);
+				}
+			}
+		}
+	}, {
 		key: 'changeData',
 		value: function changeData(data) {
 			this.props.onChange(value, schema);
@@ -192,11 +202,7 @@ var Radios = function (_Component) {
 			for (var i in schema.options) {
 				if (schema.options[i].hasInput) {
 					var inputClassName = "radio-input " + schema.options[i].className;
-					if (schema.options[i].inputDisabled === false) {
-						input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
-					} else {
-						input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, disabled: true, onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
-					}
+					input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onFocus: self.onFocus.bind(self), onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
 				}
 			}
 
