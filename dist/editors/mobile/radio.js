@@ -191,7 +191,12 @@ var Radios = function (_Component) {
 			var input = "";
 			for (var i in schema.options) {
 				if (schema.options[i].hasInput) {
-					input = _react2.default.createElement(_inputItem2.default, { className: 'radio-input', onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
+					var inputClassName = "radio-input " + schema.options[i].className;
+					if (schema.options[i].inputDisabled === false) {
+						input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
+					} else {
+						input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, disabled: true, onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
+					}
 				}
 			}
 
