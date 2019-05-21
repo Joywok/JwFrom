@@ -55,6 +55,29 @@ var Textarea = function (_Component) {
       }
     }
   }, {
+    key: 'onFocus',
+    value: function onFocus(e) {
+      var _focusElem = null; //输入框焦点
+      if (/(iPhone|iOS)/i.test(navigator.userAgent)) {
+        _focusElem = e.target || e.srcElement;
+        _focusElem.scrollIntoView();
+        _focusElem.scrollIntoViewIfNeeded(true);
+      }
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick(e) {
+      var _focusElem = null; //输入框焦点
+      if ($(e.target).is(":focus")) {} else {
+        if (/(iPhone|iOS)/i.test(navigator.userAgent)) {
+          $(e.target).focus();
+          _focusElem = e.target || e.srcElement;
+          _focusElem.scrollIntoView();
+          _focusElem.scrollIntoViewIfNeeded(true);
+        }
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -62,6 +85,10 @@ var Textarea = function (_Component) {
       var schema = this.props.schema;
       var target = _react2.default.createElement(_textareaItem2.default, _extends({}, schema['attr'], schema['events'], { value: schema['defaultValue'], onChange: function onChange(value) {
           return _this2.onChange(value, schema);
+        }, onClick: function onClick(e) {
+          return _this2.onClick(e);
+        }, onFocus: function onFocus(e) {
+          return _this2.onFocus(e);
         } }));
       if (schema["other"] && schema["other"]['template']) {
         var Template = schema["other"]['template'];
