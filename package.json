@@ -1,6 +1,6 @@
 {
   "name": "jw-form",
-  "version": "0.0.63",
+  "version": "0.0.65",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,12 +19,12 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-size": "^2.1.0",
     "html-to-react": "^1.2.11",
-    "jw-components": "0.0.11",
+    "jw-components": "0.0.25",
     "jw-components-mobile": "0.0.26",
     "loading-svg": "^1.0.0",
     "moment": "^2.18.1",
     "path": "^0.12.7",
-    "rc-form": "^1.4.3",
+    "rc-form": "1.4.3",
     "react": "^15.6.1",
     "react-rating": "^0.8.1"
   }
