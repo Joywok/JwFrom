@@ -92,6 +92,14 @@ var _Upload = require('./editors/mobile/Upload');
 
 var _Upload2 = _interopRequireDefault(_Upload);
 
+var _Title = require('./editors/mobile/Title');
+
+var _Title2 = _interopRequireDefault(_Title);
+
+var _SubTitle = require('./editors/mobile/SubTitle');
+
+var _SubTitle2 = _interopRequireDefault(_SubTitle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -201,6 +209,21 @@ var BasicDemo = function (_React$Component) {
           initialValue: schema['defaultValue'],
           trigger: 'onChange', validateTrigger: 'onChange'
         })(_react2.default.createElement(_checkbox2.default, data));
+      }
+      if (schema.element == 'Title') {
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_Title2.default, data));
+      }
+      if (schema.element == 'SubTitle') {
+        console.log(schema, "xxxx");
+        component = getFieldDecorator(schema["name"], {
+          rules: schema["rules"] || [],
+          initialValue: schema['defaultValue'],
+          trigger: 'onChange', validateTrigger: 'onChange'
+        })(_react2.default.createElement(_SubTitle2.default, data));
       }
       if (schema.element == 'UploadLogo') {
         component = getFieldDecorator(schema["name"], {
