@@ -43,6 +43,11 @@ var Title = function (_Component) {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'Form-item-w', ref: 'container' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'line' },
+					'\xA0'
+				),
 				this.getLabel(schema.label)
 			);
 		}
