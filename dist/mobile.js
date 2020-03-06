@@ -100,6 +100,10 @@ var _SubTitle = require('./editors/mobile/SubTitle');
 
 var _SubTitle2 = _interopRequireDefault(_SubTitle);
 
+var _segment = require('./editors/mobile/segment');
+
+var _segment2 = _interopRequireDefault(_segment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -299,6 +303,9 @@ var BasicDemo = function (_React$Component) {
           rules: schema["rules"] || [],
           initialValue: schema['defaultValue']
         })(_react2.default.createElement(_rate2.default, data));
+      }
+      if (schema.element == 'Segment') {
+        component = _react2.default.createElement(_segment2.default, data);
       }
 
       if (schema.element == 'Custom') {

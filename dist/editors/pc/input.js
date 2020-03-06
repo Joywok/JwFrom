@@ -69,8 +69,7 @@ var InputCustom = function (_Component) {
 				data = Object.assign(data, schema["events"]);
 			}
 			if (this.props.type && this.props.type == 'Textarea') {
-				var TextArea = _input2.default.TextArea;
-
+				var TextArea = _input2.default;
 				target = _react2.default.createElement(TextArea, _extends({}, data, { onChange: function onChange(e) {
 						return _this2.onChange(e, schema);
 					}, value: schema['defaultValue'] }));

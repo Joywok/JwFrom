@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _inputItem = require('jw-components-mobile/lib/input-item');
@@ -35,188 +35,209 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var RadioItem = _radio2.default.RadioItem;
 
 var Radios = function (_Component) {
-	_inherits(Radios, _Component);
+  _inherits(Radios, _Component);
 
-	function Radios(props) {
-		_classCallCheck(this, Radios);
+  function Radios(props) {
+    _classCallCheck(this, Radios);
 
-		var _this = _possibleConstructorReturn(this, (Radios.__proto__ || Object.getPrototypeOf(Radios)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Radios.__proto__ || Object.getPrototypeOf(Radios)).call(this, props));
 
-		_this.state = {
-			schema: _this.props.schema
-		};
-		return _this;
-	}
+    _this.state = {
+      schema: _this.props.schema
+    };
+    return _this;
+  }
 
-	_createClass(Radios, [{
-		key: 'getLabel',
-		value: function getLabel(txt) {
-			if (txt) {
-				return _react2.default.createElement('div', { className: 'label ant-form-item-label', dangerouslySetInnerHTML: { __html: txt } });
-			} else {
-				return '';
-			}
-		}
-	}, {
-		key: 'onChange',
-		value: function onChange(value, schema) {
-			this.props.onChange(value, schema);
-			var propsSchema = this.props.schema;
-			if (propsSchema['events'] && propsSchema['events']['onChange']) {
-				propsSchema['events']['onChange'].call(this, arguments);
-			}
-		}
-	}, {
-		key: 'onFocus',
-		value: function onFocus(v) {
-			var self = this;
-			for (var i in self.state.schema.options) {
-				if (self.state.schema.options[i].hasInput) {
-					self.onChange(self.state.schema.options[i].value, self.state.schema);
-				}
-			}
-		}
-	}, {
-		key: 'changeData',
-		value: function changeData(data) {
-			this.props.onChange(value, schema);
-		}
-	}, {
-		key: 'selectData',
-		value: function selectData(selected_schame, data) {
-			var self = this;
-			var nowSchema = [];
-			data.map(function (i, index) {
-				if (i.length) {
-					nowSchema.push(self.selectData(selected_schame, i));
-				} else {
-					if (i['name'] == selected_schame['name']) {
-						nowSchema.push(selected_schame);
-					} else {
-						nowSchema.push(i);
-					}
-				}
-			});
-			return nowSchema;
-		}
-	}, {
-		key: 'inputChange',
-		value: function inputChange(value) {
+  _createClass(Radios, [{
+    key: 'getLabel',
+    value: function getLabel(txt) {
+      if (txt) {
+        return _react2.default.createElement('div', { className: 'label ant-form-item-label', dangerouslySetInnerHTML: { __html: txt } });
+      } else {
+        return '';
+      }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(value, schema) {
+      this.props.onChange(value, schema);
+      var propsSchema = this.props.schema;
+      if (propsSchema['events'] && propsSchema['events']['onChange']) {
+        propsSchema['events']['onChange'].call(this, arguments);
+      }
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick(e) {
+      var _focusElem = null; //输入框焦点
+      if ($(e.target).is(":focus")) {} else {
+        if (/(iPhone|iOS)/i.test(navigator.userAgent)) {
+          $(e.target).focus();
+          _focusElem = e.target || e.srcElement;
+          _focusElem.scrollIntoView();
+          _focusElem.scrollIntoViewIfNeeded(true);
+        }
+      }
+    }
+  }, {
+    key: 'onFocus',
+    value: function onFocus(v) {
+      var _focusElem = null; //输入框焦点
+      if (/(iPhone|iOS)/i.test(navigator.userAgent)) {
+        _focusElem = e.target || e.srcElement;
+        _focusElem.scrollIntoView();
+        _focusElem.scrollIntoViewIfNeeded(true);
+      }
+      var self = this;
+      for (var i in self.state.schema.options) {
+        if (self.state.schema.options[i].hasInput) {
+          self.onChange(self.state.schema.options[i].value, self.state.schema);
+        }
+      }
+    }
+  }, {
+    key: 'changeData',
+    value: function changeData(data) {
+      this.props.onChange(value, schema);
+    }
+  }, {
+    key: 'selectData',
+    value: function selectData(selected_schame, data) {
+      var self = this;
+      var nowSchema = [];
+      data.map(function (i, index) {
+        if (i.length) {
+          nowSchema.push(self.selectData(selected_schame, i));
+        } else {
+          if (i['name'] == selected_schame['name']) {
+            nowSchema.push(selected_schame);
+          } else {
+            nowSchema.push(i);
+          }
+        }
+      });
+      return nowSchema;
+    }
+  }, {
+    key: 'inputChange',
+    value: function inputChange(value) {
 
-			console.log(value);
-			var self = this;
-			for (var i in this.props.schema.options) {
-				if (this.props.schema.options[i].hasInput) {
-					this.props.schema.options[i].inputValue = value;
-				}
-			}
-			self.setState({
-				schema: this.props.schema
-			});
-		}
-	}, {
-		key: 'resetOptions',
-		value: function resetOptions(data) {
-			var self = this;
-			var schemas = self["props"]['schemas'];
-			var schema = self.props.schema;
-			schema['options'] = data;
-			var nowSchema = this.selectData(schema, schemas);
-			var changeSchemas = self.props.changeSchemas;
-			changeSchemas(schemas);
-		}
-	}, {
-		key: '_init_layout',
-		value: function _init_layout() {
-			var schema = this.state.schema;
-			if (schema['layout'] == 'horizontal') {
-				return 'layout-horizontal';
-			} else if (schema['layout'] == 'vertical') {
-				return 'layout-vertical';
-			} else {
-				return 'layout-column layout-column-' + schema['column'];
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var schema = this.props.schema;
-			var self = this;
-			var target = void 0;
-			if (schema["remote"] && (!schema['options'] || schema['options'].length == 0)) {
-				target = schema["remote"]["loading"] || _react2.default.createElement(
-					'div',
-					{ className: 'loading-bounce ' },
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null)
-				);
-				if (schema['remote']['fetch'] && typeof schema['remote']['fetch'] == 'function') {
-					schema['remote']['fetch'](this.resetOptions.bind(this));
-				} else {
-					axios({
-						method: schema["remote"]["method"],
-						url: schema["remote"]["url"],
-						data: schema["remote"]["data"]
-					}).then(function (response) {
-						console.log(response);
-						self.resetOptions(response);
-					}).catch(function (error) {
-						message.error(error.toString(), 2);
-					});
-				}
-			} else {
-				target = _react2.default.createElement(
-					'div',
-					_extends({ className: 'radio-list' }, schema['attr']),
-					_.map(schema.options, function (item) {
-						return _react2.default.createElement(
-							RadioItem,
-							{ name: item.name || item.value, key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, disabled: item["disabled"] || false, onChange: function onChange() {
-									return self.onChange(item.value, schema);
-								} },
-							item.label
-						);
-					})
-				);
-			}
+      console.log(value);
+      var self = this;
+      for (var i in this.props.schema.options) {
+        if (this.props.schema.options[i].hasInput) {
+          this.props.schema.options[i].inputValue = value;
+        }
+      }
+      self.setState({
+        schema: this.props.schema
+      });
+    }
+  }, {
+    key: 'resetOptions',
+    value: function resetOptions(data) {
+      var self = this;
+      var schemas = self["props"]['schemas'];
+      var schema = self.props.schema;
+      schema['options'] = data;
+      var nowSchema = this.selectData(schema, schemas);
+      var changeSchemas = self.props.changeSchemas;
+      changeSchemas(schemas);
+    }
+  }, {
+    key: '_init_layout',
+    value: function _init_layout() {
+      var schema = this.state.schema;
+      if (schema['layout'] == 'horizontal') {
+        return 'layout-horizontal';
+      } else if (schema['layout'] == 'vertical') {
+        return 'layout-vertical';
+      } else {
+        return 'layout-column layout-column-' + schema['column'];
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var schema = this.props.schema;
+      var self = this;
+      var target = void 0;
+      if (schema["remote"] && (!schema['options'] || schema['options'].length == 0)) {
+        target = schema["remote"]["loading"] || _react2.default.createElement(
+          'div',
+          { className: 'loading-bounce ' },
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null)
+        );
+        if (schema['remote']['fetch'] && typeof schema['remote']['fetch'] == 'function') {
+          schema['remote']['fetch'](this.resetOptions.bind(this));
+        } else {
+          axios({
+            method: schema["remote"]["method"],
+            url: schema["remote"]["url"],
+            data: schema["remote"]["data"]
+          }).then(function (response) {
+            console.log(response);
+            self.resetOptions(response);
+          }).catch(function (error) {
+            message.error(error.toString(), 2);
+          });
+        }
+      } else {
+        target = _react2.default.createElement(
+          'div',
+          _extends({ className: 'radio-list' }, schema['attr']),
+          _.map(schema.options, function (item) {
+            return _react2.default.createElement(
+              RadioItem,
+              { name: item.name || item.value, key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, disabled: item["disabled"] || false, onChange: function onChange() {
+                  return self.onChange(item.value, schema);
+                } },
+              item.label
+            );
+          })
+        );
+      }
 
-			if (schema["other"] && schema["other"]['template']) {
-				var Template = schema["other"]['template'];
-				target = _react2.default.createElement(
-					'div',
-					{ className: 'Form-item-c' },
-					_react2.default.createElement(Template, { children: target, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
-				);
-			} else {
-				target = _react2.default.createElement(
-					'div',
-					{ className: 'Form-item-c' },
-					target
-				);
-			}
+      if (schema["other"] && schema["other"]['template']) {
+        var Template = schema["other"]['template'];
+        target = _react2.default.createElement(
+          'div',
+          { className: 'Form-item-c' },
+          _react2.default.createElement(Template, { children: target, target: self, changeData: self.props.changeData, changeSchemas: self.props.changeSchemas })
+        );
+      } else {
+        target = _react2.default.createElement(
+          'div',
+          { className: 'Form-item-c' },
+          target
+        );
+      }
 
-			var input = "";
-			for (var i in schema.options) {
-				if (schema.options[i].hasInput) {
-					var inputClassName = "radio-input " + schema.options[i].className;
-					input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onFocus: self.onFocus.bind(self), onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
-				}
-			}
+      var input = "";
+      for (var i in schema.options) {
+        if (schema.options[i].hasInput) {
+          var inputClassName = "radio-input " + schema.options[i].className;
+          input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onClick: function onClick(e) {
+              return self.onClick(e);
+            }, onFocus: self.onFocus.bind(self), onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
+        }
+      }
 
-			return _react2.default.createElement(
-				'div',
-				{ className: "Form-item-w " + this._init_layout(), ref: 'container' },
-				this.getLabel(schema.label),
-				target,
-				input
-			);
-		}
-	}]);
+      return _react2.default.createElement(
+        'div',
+        { className: "Form-item-w " + this._init_layout(), ref: 'container' },
+        this.getLabel(schema.label),
+        target,
+        input
+      );
+    }
+  }]);
 
-	return Radios;
+  return Radios;
 }(_react.Component);
 
 exports.default = Radios;
