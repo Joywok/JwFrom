@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _inputItem = require('jw-components-mobile/lib/input-item');
+var _textareaItem = require('jw-components-mobile/lib/textarea-item');
 
-var _inputItem2 = _interopRequireDefault(_inputItem);
+var _textareaItem2 = _interopRequireDefault(_textareaItem);
 
 var _radio = require('jw-components-mobile/lib/radio');
 
@@ -16,7 +16,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-require('jw-components-mobile/lib/input-item/style');
+require('jw-components-mobile/lib/textarea-item/style');
 
 require('jw-components-mobile/lib/radio/style');
 
@@ -120,17 +120,17 @@ var Radios = function (_Component) {
     }
   }, {
     key: 'inputChange',
-    value: function inputChange(value) {
+    value: function inputChange(item, value) {
 
-      console.log(value);
+      console.log(item, value);
       var self = this;
-      for (var i in this.props.schema.options) {
-        if (this.props.schema.options[i].hasInput) {
-          this.props.schema.options[i].inputValue = value;
+      for (var i in self.props.schema.options) {
+        if (item.value == self.props.schema.options[i].value) {
+          self.props.schema.options[i].inputValue = value;
         }
       }
       self.setState({
-        schema: this.props.schema
+        schema: self.props.schema
       });
     }
   }, {
@@ -191,13 +191,33 @@ var Radios = function (_Component) {
           'div',
           _extends({ className: 'radio-list' }, schema['attr']),
           _.map(schema.options, function (item) {
-            return _react2.default.createElement(
-              RadioItem,
-              { name: item.name || item.value, key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, disabled: item["disabled"] || false, onChange: function onChange() {
-                  return self.onChange(item.value, schema);
-                } },
-              item.label
-            );
+            if (item.hasInput) {
+              var inputClassName = "radio-textarea " + item.className;
+              return _react2.default.createElement(
+                'div',
+                { className: 'radio-list-i-1' },
+                _react2.default.createElement(
+                  RadioItem,
+                  { name: item.name || item.value, key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, disabled: item["disabled"] || false, onChange: function onChange() {
+                      return self.onChange(item.value, schema);
+                    } },
+                  item.label
+                ),
+                _react2.default.createElement(_textareaItem2.default, { className: inputClassName, autoHeight: true, onChange: self.inputChange.bind(self, item), placeholder: '\u5982\u9009\u62E9\u8BE5\u9879\uFF0C\u8BF7\u586B\u5199', value: item.inputValue })
+              );
+            } else {
+              return _react2.default.createElement(
+                'div',
+                { className: 'radio-list-i-1' },
+                _react2.default.createElement(
+                  RadioItem,
+                  { name: item.name || item.value, key: item.value, className: 'radio-list-i', checked: schema.defaultValue == item.value ? true : false, disabled: item["disabled"] || false, onChange: function onChange() {
+                      return self.onChange(item.value, schema);
+                    } },
+                  item.label
+                )
+              );
+            }
           })
         );
       }
@@ -217,22 +237,11 @@ var Radios = function (_Component) {
         );
       }
 
-      var input = "";
-      for (var i in schema.options) {
-        if (schema.options[i].hasInput) {
-          var inputClassName = "radio-input " + schema.options[i].className;
-          input = _react2.default.createElement(_inputItem2.default, { className: inputClassName, onClick: function onClick(e) {
-              return self.onClick(e);
-            }, onFocus: self.onFocus.bind(self), onChange: this.inputChange.bind(this), value: schema.options[i].inputValue });
-        }
-      }
-
       return _react2.default.createElement(
         'div',
         { className: "Form-item-w " + this._init_layout(), ref: 'container' },
         this.getLabel(schema.label),
-        target,
-        input
+        target
       );
     }
   }]);

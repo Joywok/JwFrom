@@ -4,11 +4,19 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _textareaItem = require('jw-components-mobile/lib/textarea-item');
+
+var _textareaItem2 = _interopRequireDefault(_textareaItem);
+
 var _checkbox = require('jw-components-mobile/lib/checkbox');
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('jw-components-mobile/lib/textarea-item/style');
 
 require('jw-components-mobile/lib/checkbox/style');
 
@@ -58,6 +66,21 @@ var Checkboxs = function (_Component) {
 			if (propsSchema['events'] && propsSchema['events']['onChange']) {
 				propsSchema['events']['onChange'].call(this, arguments);
 			}
+		}
+	}, {
+		key: 'inputChange',
+		value: function inputChange(item, value) {
+
+			console.log(item, value);
+			var self = this;
+			for (var i in self.props.schema.options) {
+				if (item.value == self.props.schema.options[i].value) {
+					self.props.schema.options[i].inputValue = value;
+				}
+			}
+			self.setState({
+				schema: self.props.schema
+			});
 		}
 	}, {
 		key: 'getLabel',
@@ -133,7 +156,6 @@ var Checkboxs = function (_Component) {
 						url: schema["remote"]["url"],
 						data: schema["remote"]["data"]
 					}).then(function (response) {
-						console.log(response);
 						self.resetOptions(response);
 					}).catch(function (error) {
 						message.error(error.toString(), 2);
@@ -142,7 +164,7 @@ var Checkboxs = function (_Component) {
 			} else {
 				target = _react2.default.createElement(
 					'div',
-					schema['attr'],
+					_extends({ className: 'checkbox-list' }, schema['attr']),
 					_.map(schema.options, function (item, index) {
 						var is_has = false;
 						_.map(schema.defaultValue, function (i) {
@@ -150,18 +172,44 @@ var Checkboxs = function (_Component) {
 								is_has = true;
 							}
 						});
-						return _react2.default.createElement(
-							CheckboxItem,
-							{ key: item.value, disabled: item["disabled"] || false, checked: is_has, onChange: function onChange(e) {
-									return self.onChange(e, item, schema);
-								} },
-							' ',
-							_react2.default.createElement(
-								'span',
-								null,
-								item.label
-							)
-						);
+
+						if (item.hasInput) {
+							var inputClassName = "checkbox-textarea " + item.className;
+							return _react2.default.createElement(
+								'div',
+								{ className: 'checkbox-list-i-1' },
+								_react2.default.createElement(
+									CheckboxItem,
+									{ key: item.value, disabled: item["disabled"] || false, checked: is_has, onChange: function onChange(e) {
+											return self.onChange(e, item, schema);
+										} },
+									' ',
+									_react2.default.createElement(
+										'span',
+										null,
+										item.label
+									)
+								),
+								_react2.default.createElement(_textareaItem2.default, { className: inputClassName, autoHeight: true, onChange: self.inputChange.bind(self, item), placeholder: '\u5982\u9009\u62E9\u8BE5\u9879\uFF0C\u8BF7\u586B\u5199', value: item.inputValue })
+							);
+						} else {
+							return _react2.default.createElement(
+								'div',
+								{ className: 'checkbox-list-i-1' },
+								_react2.default.createElement(
+									CheckboxItem,
+									{ key: item.value, disabled: item["disabled"] || false, checked: is_has, onChange: function onChange(e) {
+											return self.onChange(e, item, schema);
+										} },
+									' ',
+									_react2.default.createElement(
+										'span',
+										null,
+										item.label
+									)
+								)
+							);
+						}
 					})
 				);
 			}
