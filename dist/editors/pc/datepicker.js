@@ -58,16 +58,18 @@ var DateCustom = function (_Component) {
 		value: function render() {
 			var self = this;
 			var schema = this.props.schema;
-			var data = Object.assign({}, {}, schema['attr'], schema["events"]);
+			var data = Object.assign({}, {
+				type: schema['type']
+			}, schema['attr'], schema["events"]);
 			var target = void 0;
-			if (schema['type'] == 'month') {
-				target = _react2.default.createElement(MonthPicker, data);
-			} else if (schema['type'] == 'range') {
-				console.log(1, "newlog");
-				target = _react2.default.createElement(RangePicker, data);
-			} else {
-				target = _react2.default.createElement(_datePicker2.default, data);
-			}
+			// if(schema['type'] == 'month'){
+			// 	target = <MonthPicker {...data} />
+			// }else if(schema['type'] == 'range'){
+			// 	target = <RangePicker {...data} />
+			// }else{
+			target = _react2.default.createElement(_datePicker2.default, data);
+			// }
+
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
 				target = _react2.default.createElement(
