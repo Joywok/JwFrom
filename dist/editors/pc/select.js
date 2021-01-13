@@ -71,8 +71,19 @@ var SelectCustom = function (_Component) {
 			var schema = this.props.schema;
 			var self = this;
 			var data = Object.assign({}, {
-				value: schema['defaultValue']
-			}, schema["attr"], schema["events"]);
+				// value:schema['defaultValue'],
+
+			}, schema["attr"], schema["events"], {
+				placeholder: schema['placeholder']
+			});
+
+			if (schema['defaultValue'] && schema['defaultValue'].length != 0) {
+				data['value'] = schema['defaultValue'];
+			}
+
+			console.log(data, 'zzzzzz');
+
+			// console.log(data,'这个是什么啊');
 			var target = _react2.default.createElement(
 				_select2.default,
 				_extends({}, data, { onChange: function onChange(e) {

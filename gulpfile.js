@@ -19,6 +19,7 @@ gulp.task('build',()=>{
 	return gulp.src("lib/**/*.js")
     .pipe(babel())
     .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest('../joywok-forms/node_modules/jw-form/dist/'))
     .pipe(gulp.dest('../joywok-forms-chorus/node_modules/jw-form/dist/'));
 })
 gulp.task('default',['styles','build'],()=>{
