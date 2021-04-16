@@ -60,7 +60,9 @@ var DateCustom = function (_Component) {
 			var schema = this.props.schema;
 			var data = Object.assign({}, {
 				type: schema['type']
-			}, schema['attr'], schema["events"]);
+			}, schema['attr'], schema["events"], {
+				placeholder: schema['placeholder']
+			});
 			var target = void 0;
 			// if(schema['type'] == 'month'){
 			// 	target = <MonthPicker {...data} />

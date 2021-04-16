@@ -136,10 +136,27 @@ var Radios = function (_Component) {
 							return self.onChange(e, schema);
 						} },
 					_.map(schema.options, function (item) {
+						var imgHtml = '';
+						if (item['image']) {
+							imgHtml = _react2.default.createElement(
+								'div',
+								{ className: "location img-set " },
+								_react2.default.createElement(
+									'div',
+									{ className: "img-set-w " },
+									_react2.default.createElement('img', { src: item.image })
+								)
+							);
+						}
 						return _react2.default.createElement(
-							_jwComponents.Radio,
-							{ value: item["value"] },
-							item.label
+							'div',
+							{ className: 'radio-groups-i-warp' },
+							_react2.default.createElement(
+								_jwComponents.Radio,
+								{ value: item["value"] },
+								item.label
+							),
+							imgHtml
 						);
 					})
 				);

@@ -288,6 +288,7 @@ var BasicDemo = function (_React$Component) {
     key: '_init_list',
     value: function _init_list(data) {
       var self = this;
+
       if (data.length == 0) {
         return false;
       }
@@ -313,6 +314,7 @@ var BasicDemo = function (_React$Component) {
     value: function render() {
       var self = this;
       var items = this._init_list(self.props.formData.schema);
+      // console.log(items,'这个是什么啊');
       return _react2.default.createElement(
         'div',
         { className: "form-detail " + self.props.formData['className'] },
@@ -327,6 +329,9 @@ var BasicDemo = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {}
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {}
   }]);
 
   return BasicDemo;

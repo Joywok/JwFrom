@@ -134,9 +134,37 @@ var Checkboxs = function (_Component) {
 					});
 				}
 			} else {
-				target = _react2.default.createElement(CheckboxGroup, { options: schema.options, onChange: function onChange(v) {
-						return self.onChange(v, schema);
-					}, value: schema["defaultValue"] });
+				// target = <CheckboxGroup options={schema.options} onChange={v=>self.onChange(v,schema)} value={schema["defaultValue"]} />
+				target = _react2.default.createElement(
+					_checkbox2.default.Group,
+					{ onChange: function onChange(v) {
+							return self.onChange(v, schema);
+						}, value: schema["defaultValue"] },
+					_.map(schema.options, function (item) {
+						var imgHtml = '';
+						if (item['image']) {
+							imgHtml = _react2.default.createElement(
+								'div',
+								{ className: "location img-set " },
+								_react2.default.createElement(
+									'div',
+									{ className: "img-set-w " },
+									_react2.default.createElement('img', { src: item.image })
+								)
+							);
+						}
+						return _react2.default.createElement(
+							'div',
+							{ className: 'checkbox-groups-i-warp' },
+							_react2.default.createElement(
+								_checkbox2.default,
+								{ value: item["value"] },
+								item.label
+							),
+							imgHtml
+						);
+					})
+				);
 			}
 			if (schema["other"] && schema["other"]['template']) {
 				var Template = schema["other"]['template'];
